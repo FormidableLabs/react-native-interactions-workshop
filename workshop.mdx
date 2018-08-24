@@ -1,3 +1,144 @@
-# React Native Advanced Animations & Interactions
+import { CodeSurfer } from 'mdx-deck-code-surfer';
+import prismTheme from 'prism-react-renderer/themes/nightOwl';
+import Video from './presentation/components/Video';
+export { default as theme } from './presentation/theme';
+
+# React Native Animations & Interactions
 
 #### React Native EU 2018
+
+---
+
+## Workshop materials
+
+http://tiny.cc/rneu-interactions
+
+## This presentation
+
+https://rneu-interactions.netlify.com
+
+---
+
+<Video  url="https://uimovement.com/media/resource_image/image_6220.gif.mp4"  />
+
+###### Source: [Fast Food Order](https://uimovement.com/ui/6220/fast-food-order/)
+
+---
+
+<Video url="https://uimovement.com/media/resource_image/image_6114.gif.mp4" />
+
+###### Source: [Thanos Effect](https://uimovement.com/ui/6114/read-all-thanos-effect/)
+
+---
+
+<Video url="https://uimovement.com/media/resource_image/image_6048.gif.mp4" />
+
+###### Source: [Books](https://uimovement.com/ui/6048/books/)
+
+---
+
+<Video url="https://uimovement.com/media/resource_image/image_5929.gif.mp4" />
+
+###### Source: [Juice Fruit](https://uimovement.com/ui/5929/juice-fruit/)
+
+---
+
+<Video url="https://uimovement.com/media/resource_image/image_6133.gif.mp4" />
+
+###### Source: [Calendar pinch zoom](https://uimovement.com/ui/6133/calendar-pinch-zoom/)
+
+---
+
+<Video url="https://uimovement.com/media/resource_image/image_6168.gif.mp4" />
+
+###### Source: [Finance App](https://uimovement.com/ui/6168/finance-app/)
+
+---
+
+<Video url="https://media.giphy.com/media/CtLMCCLylm3o4/giphy.mp4" />
+
+## wat
+
+---
+
+## Animations are great
+
+##### (when used right)
+
+---
+
+## Good animations
+
+- Meaningful
+- Physically realistic
+- Hard to implement
+
+---
+
+### Built-in Animation APIs
+
+[Animated](https://facebook.github.io/react-native/docs/animations#animated-api)
+
+[LayoutAnimation](https://facebook.github.io/react-native/docs/animations#layoutanimation-api)
+
+---
+
+<CodeSurfer
+  code={require("!raw-loader!./presentation/snippets/animated.js")}
+  theme={prismTheme}
+  title="Animated"
+  lang="javascript"
+  notes=""
+  showNumbers
+  steps={[
+    { tokens: {2: [8, 13]}, notes: "It's built into React Native" },
+    { lines: [6], notes: "We create an animated value container " },
+    { range: [21, 24], notes: "We can transform that value to another value" },
+    { lines: [27, 31], notes: "We can bind the value to a view's styles" },
+    { lines: [14], notes: "But we must manually start the animation" }
+  ]}
+/>
+
+---
+
+### Built-in Interaction APIs
+
+[Gesture Responder System](https://facebook.github.io/react-native/docs/gesture-responder-system)
+
+[PanResponder](https://facebook.github.io/react-native/docs/panresponder)
+
+---
+
+<CodeSurfer
+  code={require("!raw-loader!./presentation/snippets/panresponder.js")}
+  theme={prismTheme}
+  title="PanResponder"
+  lang="javascript"
+  notes=""
+  showNumbers
+  steps={[
+    { tokens: {2: [6, 11]}, notes: "It's built into React Native" },
+    { range: [9, 14], notes: "We can respond to gesture lifecycle events" },
+    { lines: [25], notes: "PanResponder is just a utility to generate gesture props, which we attach to a view"},
+    { lines: [6, 13], notes: "And bind the gesture state to an Animated value" },
+    { lines: [17, 18, 19, 20, 21, 24], notes: "The Animated value can then drive visual changes" },
+  ]}
+/>
+
+---
+
+## Animated & PanResponder basics
+
+[FormidableLabs/react-native-animation-workshop](https://github.com/FormidableLabs/react-native-animation-workshop)
+
+---
+
+# "Advanced"
+
+---
+
+## Today's program
+
+- Animated ➡️ Reanimated
+- PanResponder ➡️ GestureHandler
+- React Navigation Transitioners
