@@ -1,0 +1,38 @@
+---
+extends:
+  - formidable/configurations/es6-react
+  - prettier
+plugins:
+  - prettier
+env:
+  browser: true
+rules:
+  quotes:
+    - warn
+    - single
+  no-unsafe-negation:
+    - off
+  max-nested-callbacks:
+    - off
+  arrow-parens:
+    - off
+  filenames/match-regex:
+    - off
+  no-magic-numbers:
+    - off
+  complexity:
+    - off
+  max-statements:
+    - off
+  no-use-before-define:
+    - off
+  valid-jsdoc:
+    - off
+  react/prop-types:
+    - off
+  react/no-multi-comp:
+    - off
+  react/sort-comp:
+    - off
+  react/jsx-handler-names:
+    - off
