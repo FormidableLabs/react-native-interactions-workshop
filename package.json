@@ -1,0 +1,12 @@
+{
+  "name": "react-native-interactions-workshop",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "mdx-deck workshop.mdx"
+  },
+  "devDependencies": {
+    "mdx-deck": "^1.6.4"
+  }
+}
