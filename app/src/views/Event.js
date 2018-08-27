@@ -4,9 +4,13 @@ import { Transition } from 'react-navigation-fluid-transitions';
 const Wrapper = styled.View``;
 
 const Header = styled.View`
-  padding-top: 32px;
-  background-color: blue;
   height: 120px;
+  background-color: blue;
+  padding: 32px 10px 10px 10px;
+`;
+
+const HeaderContent = styled.View`
+  background-color: transparent;
 `;
 
 const Title = styled.Text`
@@ -17,6 +21,7 @@ const Title = styled.Text`
 `;
 
 const Speaker = styled.Text`
+  color: white;
   font-size: 12px;
   font-style: italic;
 `;
@@ -33,11 +38,13 @@ const Home = ({ navigation }) => {
     <Wrapper>
       <Transition shared={`eventTitle-${event.slug}`}>
         <Header>
-          <Title>{event.title}</Title>
+          <Transition appear="top">
+            <HeaderContent>
+              <Title>{event.title}</Title>
+              <Speaker>{event.speaker}</Speaker>
+            </HeaderContent>
+          </Transition>
         </Header>
-      </Transition>
-      <Transition appear="top">
-        <Speaker>{event.speaker}</Speaker>
       </Transition>
       <Transition appear="bottom">
         <Agenda>{event.agenda}</Agenda>
