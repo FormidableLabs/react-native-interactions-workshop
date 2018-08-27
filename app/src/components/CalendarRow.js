@@ -8,7 +8,6 @@ const Wrapper = styled.View`
   flex-direction: row;
   align-items: stretch;
   width: 100%;
-  height: 100%;
 `;
 
 const Column = styled(Animated.View)`
@@ -18,6 +17,7 @@ const Column = styled(Animated.View)`
   align-items: stretch;
   border-right-width: ${p => p.theme.sizes.hairline};
   border-right-color: ${p => p.theme.colors.stroke};
+  width: ${100 / 8 /* @TODO: Might not want to hard code this */}%;
 `;
 
 const Content = styled.View`
@@ -29,12 +29,8 @@ const Content = styled.View`
 
 const CalendarRow = ({ sidebar, children }) => (
   <Wrapper>
-    <Column>
-      {sidebar}
-    </Column>
-    <Content>
-      {children}
-    </Content>
+    <Column>{sidebar}</Column>
+    <Content>{children}</Content>
   </Wrapper>
 );
 
