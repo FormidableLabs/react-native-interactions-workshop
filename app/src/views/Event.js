@@ -1,7 +1,7 @@
-import React from "react";
-import styled from "styled-components/native";
+import React from 'react';
+import styled from 'styled-components/native';
 
-import Container from "../components/Container";
+import Container from '../components/Container';
 
 const Title = styled.Text`
   font-size: 20px;

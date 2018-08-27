@@ -1,6 +1,6 @@
-import { createStackNavigator } from "react-navigation";
-import Home from "./Home";
-import Event from "./Event";
+import { createStackNavigator } from 'react-navigation';
+import Home from './Home';
+import Event from './Event';
 
 export default createStackNavigator(
   {
@@ -15,6 +15,6 @@ export default createStackNavigator(
     }
   },
   {
-    headerMode: "screen"
+    headerMode: 'screen'
   }
 );
