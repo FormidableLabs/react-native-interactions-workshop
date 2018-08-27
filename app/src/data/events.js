@@ -1,3 +1,5 @@
+import slugify from 'slugify';
+
 // scraped from https://react-native.eu/
 /*
   copy(
@@ -28,7 +30,7 @@
   );
 */
 
-export default [
+const data = [
   {
     day: 5,
     time: '08:30',
@@ -333,3 +335,8 @@ export default [
     agenda: ''
   }
 ];
+
+export default data.map(item => ({
+  ...item,
+  slug: slugify(item.title || `${item.speaker} ${item.time}`)
+}));

@@ -1,11 +1,16 @@
 import React from 'react';
 import styled from 'styled-components/native';
+import { Transition } from 'react-navigation-fluid-transitions';
+const Wrapper = styled.View``;
 
-const Wrapper = styled.View`
-  padding: 20px;
+const Header = styled.View`
+  padding-top: 32px;
+  background-color: blue;
+  height: 120px;
 `;
 
 const Title = styled.Text`
+  color: white;
   font-size: 16px;
   font-weight: bold;
   margin-bottom: 4px;
@@ -26,9 +31,17 @@ const Home = ({ navigation }) => {
   const event = navigation.getParam('event', {});
   return (
     <Wrapper>
-      <Title>{event.title}</Title>
-      <Speaker>{event.speaker}</Speaker>
-      <Agenda>{event.agenda}</Agenda>
+      <Transition shared={`eventTitle-${event.slug}`}>
+        <Header>
+          <Title>{event.title}</Title>
+        </Header>
+      </Transition>
+      <Transition appear="top">
+        <Speaker>{event.speaker}</Speaker>
+      </Transition>
+      <Transition appear="bottom">
+        <Agenda>{event.agenda}</Agenda>
+      </Transition>
     </Wrapper>
   );
 };

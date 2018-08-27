@@ -1,20 +1,18 @@
-import { createStackNavigator } from 'react-navigation';
+// import { createStackNavigator as createNavigator } from 'react-navigation';
+import { FluidNavigator as createNavigator } from 'react-navigation-fluid-transitions';
 import Home from './Home';
 import Event from './Event';
 
-export default createStackNavigator(
+export default createNavigator(
   {
     Home: {
-      screen: Home,
-      navigationOptions: {
-        header: null
-      }
+      screen: Home
     },
     Event: {
       screen: Event
     }
   },
   {
-    headerMode: 'screen'
+    headerMode: 'none'
   }
 );

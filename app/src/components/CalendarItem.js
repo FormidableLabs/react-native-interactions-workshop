@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import { RectButton } from 'react-native-gesture-handler';
+import { Transition } from 'react-navigation-fluid-transitions';
 
 const Item = styled(RectButton).attrs({
   underlayColor: 'white',
@@ -13,6 +14,10 @@ const Item = styled(RectButton).attrs({
   padding: 2px;
 `;
 
+const Background = styled.View`
+  flex-grow: 1;
+`;
+
 const Title = styled.Text.attrs({ numberOfLines: 2 })`
   color: white;
   font-size: 10px;
@@ -20,7 +25,11 @@ const Title = styled.Text.attrs({ numberOfLines: 2 })`
 
 const CalendarItem = ({ item, onPress }) => (
   <Item onPress={onPress}>
-    <Title>{item.title || item.speaker}</Title>
+    <Transition shared={`eventTitle-${item.slug}`}>
+      <Background>
+        <Title>{item.title}</Title>
+      </Background>
+    </Transition>
   </Item>
 );
 
