@@ -3,6 +3,7 @@ import { SafeAreaView } from 'react-native';
 import styled from 'styled-components/native';
 
 const Container = styled.SafeAreaView`
+  flex-shrink: 0;
   background: ${p => p.theme.colors.header};
 `;
 
