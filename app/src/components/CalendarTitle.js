@@ -4,13 +4,17 @@ import { Animated } from 'react-native';
 import { Transition } from 'react-navigation-fluid-transitions';
 
 const Wrapper = styled.View`
-  background-color: blue;
+  background-color: ${p => p.theme.colors.card};
+  border-radius: 4px;
   flex-grow: 1;
+  height: 34px;
+  padding: 2px;
 `;
 
 const Title = styled(Animated.Text).attrs({ numberOfLines: 2 })`
   color: white;
   font-size: 12px;
+  line-height: 15px;
 `;
 
 const CalendarTitle = ({ tweenState, title }) => {

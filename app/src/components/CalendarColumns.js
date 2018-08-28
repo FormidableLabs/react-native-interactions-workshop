@@ -2,53 +2,58 @@ import React, { Component } from 'react';
 import { Dimensions } from 'react-native';
 import { PinchGestureHandler, State } from 'react-native-gesture-handler';
 import Animated from 'react-native-reanimated';
-import styled from 'styled-components/native';
 
 import * as AnimUtils from '../AnimUtils';
+import * as theme from '../theme';
 
 const cellWidth = Dimensions.get('window').width / 8;
 
-const Container = styled(Animated.View)`
-  overflow: hidden;
-  flex-grow: 1;
-  flex-shrink: 0;
-  flex-direction: row;
-  align-items: stretch;
-`;
-
-const Column = styled(Animated.View)`
-  flex-direction: column;
-  align-items: stretch;
-  border-right-width: ${p => p.theme.sizes.hairline};
-  border-right-color: ${p => p.theme.colors.stroke};
-`;
+const styles = {
+  container: {
+    flexGrow: 1,
+    flexShrink: 0,
+    flexDirection: 'row',
+    alignItems: 'stretch',
+    overflow: 'hidden'
+  },
+  column: {
+    flexGrow: 1,
+    flexShrink: 0,
+    flexDirection: 'column',
+    alignItems: 'stretch',
+    paddingLeft: 2,
+    paddingRight: 2,
+    borderRightWidth: theme.sizes.hairline,
+    borderRightColor: theme.colors.stroke
+  }
+};
 
 class CalendarColumns extends Component {
-  pinchScale = new Animated.Value(1);
-  pinchFocalX = new Animated.Value(0);
-  pinchState = new Animated.Value(-1);
-
-  onPinchEvent = Animated.event([
-    {
-      nativeEvent: {
-        state: this.pinchState,
-        scale: this.pinchScale,
-        focalX: this.pinchFocalX
-      },
-    },
-  ]);
-
   constructor(props) {
     super(props);
 
+    const pinchScale = new Animated.Value(1);
+    const pinchFocalX = new Animated.Value(0);
+    const pinchState = new Animated.Value(-1);
+
+    this.onPinchEvent = Animated.event([
+      {
+        nativeEvent: {
+          state: pinchState,
+          scale: pinchScale,
+          focalX: pinchFocalX
+        }
+      }
+    ]);
+
     const length = 7;
-    const scale = Animated.min(length, Animated.max(1, this.pinchScale));
+    const scale = Animated.min(length, Animated.max(1, pinchScale));
     const pinchNorm = Animated.divide(Animated.sub(scale, 1), length - 1);
-    const isActive = Animated.eq(this.pinchState, State.ACTIVE);
+    const isActive = Animated.eq(pinchState, State.ACTIVE);
 
     const index = AnimUtils.condCached(
       isActive,
-      AnimUtils.floor(Animated.divide(this.pinchFocalX, cellWidth)),
+      AnimUtils.floor(Animated.divide(pinchFocalX, cellWidth)),
       -1
     );
 
@@ -74,20 +79,23 @@ class CalendarColumns extends Component {
   }
 
   render() {
-    const { renderColumn } = this.props;
+    const { children } = this.props;
 
     return (
-      <Container onLayout={this.onContentLayout}>
-        <PinchGestureHandler onGestureEvent={this.onPinchEvent} onHandlerStateChange={this.onPinchEvent}>
-          <Container style={this.containerStyle}>
+      <Animated.View style={styles.container} onLayout={this.onContentLayout}>
+        <PinchGestureHandler
+          onGestureEvent={this.onPinchEvent}
+          onHandlerStateChange={this.onPinchEvent}
+        >
+          <Animated.View style={[styles.container, this.containerStyle]}>
             {this.columnStyles.map((style, index) => (
-              <Column style={style} key={index}>
-                {renderColumn ? renderColumn(index) : null}
-              </Column>
+              <Animated.View style={[styles.column, style]} key={index}>
+                {children ? children(index) : null}
+              </Animated.View>
             ))}
-          </Container>
+          </Animated.View>
         </PinchGestureHandler>
-      </Container>
+      </Animated.View>
     );
   }
 }

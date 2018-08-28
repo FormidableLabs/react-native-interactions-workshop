@@ -6,7 +6,8 @@ export const colors = {
   header: '#fbf9fb',
   text: '#131213',
   label: '#7c7284',
-  stroke: '#d3cbd8'
+  stroke: '#d3cbd8',
+  card: '#f74c4f'
 };
 
 export const sizes = {

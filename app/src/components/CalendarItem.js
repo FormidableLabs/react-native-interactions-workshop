@@ -10,8 +10,7 @@ const Item = styled(RectButton).attrs({
 })`
   flex-grow: 0;
   flex-shrink: 1;
-  margin: 1px;
-  padding: 2px;
+  margin: 1px 0;
 `;
 
 const Background = styled.View``;
