@@ -1,4 +1,6 @@
-# Animations Workshop
+# WORK IN PROGRESS
+
+Please come back soon!
 
 * Introduction to Animation
 	* 15 minutes presentation — existing animation and interaction APIs *JANI*
