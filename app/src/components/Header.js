@@ -13,8 +13,16 @@ const Wrapper = styled.View`
   border-bottom-color: ${p => p.theme.colors.stroke};
 `;
 
+const TitleRow = styled.View`
+  flex-grow: 1;
+  flex-shrink: 0;
+  align-items: flex-start;
+  justify-content: center;
+`;
+
 const Row = styled.View`
   flex-grow: 1;
+  flex-shrink: 0;
   flex-direction: row;
   width: 100%;
   align-items: stretch;
@@ -25,6 +33,13 @@ const Column = styled.View`
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
+`;
+
+const Title = styled.Text`
+  text-align: left;
+  font-size: 18px;
+  color: ${p => p.theme.colors.text};
+  padding: 0 ${p => p.theme.sizes.large};
 `;
 
 const DateLabel = styled.Text`
@@ -38,6 +53,9 @@ const DateLabel = styled.Text`
 const Header = ({ children }) => (
   <Container>
     <Wrapper>
+      <TitleRow>
+        <Title>React Native EU</Title>
+      </TitleRow>
       <Row>
         <Column />
         <Column><DateLabel>MON</DateLabel></Column>

@@ -4,7 +4,7 @@ const viewport = Dimensions.get('window');
 
 export const colors = {
   header: '#fbf9fb',
-  text: '#131213',
+  text: '#191819',
   label: '#7c7284',
   stroke: '#d3cbd8',
   card: '#f74c4f'

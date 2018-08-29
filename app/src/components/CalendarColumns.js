@@ -11,6 +11,7 @@ const VIEWPORT_WIDTH = Dimensions.get('window').width;
 const SIDEBAR_WIDTH = VIEWPORT_WIDTH / 8;
 const CONTAINER_WIDTH = VIEWPORT_WIDTH - SIDEBAR_WIDTH;
 const CELL_WIDTH = CONTAINER_WIDTH / CELL_NUM;
+const PINCH_MAGNITUDE = 0.5;
 
 // The offset that a given cell at `index` needs to move
 // to be considered fully "zoomed", i.e. when `zoom := 1`
@@ -52,7 +53,10 @@ const getZoomWithPinch = ({ zoom, isPinchActive, pinchScale }) => {
   const prevZoomState = new Animated.Value(0);
 
   const pinchZoom = applyZoomLimit(
-    Animated.add(prevZoomState, Animated.sub(pinchScale, 1))
+    Animated.add(prevZoomState, Animated.multiply(
+      PINCH_MAGNITUDE,
+      Animated.sub(pinchScale, 1)
+    ))
   );
 
   return Animated.cond(
