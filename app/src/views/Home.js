@@ -12,7 +12,6 @@ import CalendarItemStack from '../components/CalendarItemStack';
 class Home extends Component {
   render() {
     const { navigate } = this.props;
-
     const headerLabels = data.map(x => x.label);
 
     return (

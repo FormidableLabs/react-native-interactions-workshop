@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/native';
+import Animated from 'react-native-reanimated';
 import { getHours, getMinutes } from 'date-fns';
 import { RectButton } from 'react-native-gesture-handler';
 import { Transition } from 'react-navigation-fluid-transitions';
@@ -35,6 +36,12 @@ const Card = styled.View`
   padding: 4px;
 `;
 
+const Title = styled(Animated.Text)`
+  color: white;
+  font-size: 12px;
+  line-height: 15px;
+`
+
 const CalendarItem = ({ item, style, onPress }) => {
   const height = style.height || 0;
 
@@ -43,7 +50,7 @@ const CalendarItem = ({ item, style, onPress }) => {
       <Item onPress={onPress}>
         <Transition shared={`eventTitle-${item.slug}`} animated="tweenState">
           <Card style={{ height }}>
-            <CalendarTitle title={item.title} />
+            <Title>{item.title}</Title>
           </Card>
         </Transition>
       </Item>

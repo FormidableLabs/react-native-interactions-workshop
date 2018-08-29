@@ -4,7 +4,8 @@ import {
   getTime,
   startOfWeek,
   addDays,
-  isSameDay
+  isSameDay,
+  setDate
 } from 'date-fns';
 
 import { calendar } from '../theme';
@@ -12,12 +13,14 @@ import events from './events';
 
 const { CELL_NUM } = calendar;
 const DATE_FORMAT = 'YYYY-MM-dd HH:mm';
-const now = new Date();
-const parseDate = str => parse(str, DATE_FORMAT, now);
+const baseDate = new Date();
+const parseDate = str => parse(str, DATE_FORMAT, baseDate);
 
 const normalisedEvents = events
   .map(event => {
-    const date = parseDate(event.date);
+    const day = event.day || null;
+    const date = setDate(parseDate(event.date), day + 1);
+
     if (!date) {
       return null;
     }
@@ -25,8 +28,8 @@ const normalisedEvents = events
     const title = event.title || null;
     const speaker = event.speaker || null;
     const company = event.company || null;
-    const time = event.time || null;
     const agenda = event.agenda || null;
+    const duration = event.duration || 0.5; // in hours
 
     return {
       slug: getTime(date),
@@ -35,15 +38,12 @@ const normalisedEvents = events
       company,
       agenda,
       date,
-      duration: 0.5 // in hours
+      duration
     };
   })
   .filter(Boolean);
 
-const timestamps = normalisedEvents.map(x => getTime(x.date));
-const startDate = new Date(Math.min(...timestamps));
-
-const monday = startOfWeek(startDate, {
+const monday = startOfWeek(normalisedEvents[0].date, {
   weekStartsOn: 1
 });
 
