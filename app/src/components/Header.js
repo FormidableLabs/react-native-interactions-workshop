@@ -50,7 +50,7 @@ const DateLabel = styled.Text`
   padding: ${p => p.theme.sizes.mid} 0;
 `;
 
-const Header = ({ children }) => (
+const Header = ({ labels }) => (
   <Container>
     <Wrapper>
       <TitleRow>
@@ -58,13 +58,13 @@ const Header = ({ children }) => (
       </TitleRow>
       <Row>
         <Column />
-        <Column><DateLabel>MON</DateLabel></Column>
-        <Column><DateLabel>TUE</DateLabel></Column>
-        <Column><DateLabel>WED</DateLabel></Column>
-        <Column><DateLabel>THU</DateLabel></Column>
-        <Column><DateLabel>FRI</DateLabel></Column>
-        <Column><DateLabel>SAT</DateLabel></Column>
-        <Column><DateLabel>SUN</DateLabel></Column>
+        {labels.map(label => (
+          <Column key={label}>
+            <DateLabel>
+              {label.toUpperCase()}
+            </DateLabel>
+          </Column>
+        ))}
       </Row>
     </Wrapper>
   </Container>

@@ -33,24 +33,6 @@ import slugify from 'slugify';
 const data = [
   {
     day: 5,
-    time: '08:30',
-    date: '2018-09-05 08:30',
-    speaker: 'Registration',
-    company: '',
-    title: '',
-    agenda: ''
-  },
-  {
-    day: 5,
-    time: '09:20',
-    date: '2018-09-05 09:20',
-    speaker: 'Mike Grabowski',
-    company: 'CALLSTACK',
-    title: 'Introduction',
-    agenda: ''
-  },
-  {
-    day: 5,
     time: '09:30',
     date: '2018-09-05 09:30',
     speaker: 'Mike Grabowski & Mateusz Zatorski',
@@ -70,15 +52,6 @@ const data = [
   },
   {
     day: 5,
-    time: '10:30',
-    date: '2018-09-05 10:30',
-    speaker: 'Coffee break',
-    company: '',
-    title: '',
-    agenda: ''
-  },
-  {
-    day: 5,
     time: '11:00',
     date: '2018-09-05 11:00',
     speaker: 'Roy Derks',
@@ -86,33 +59,6 @@ const data = [
     title: 'GraphQL Will Do To REST What JSON Did To XML',
     agenda:
       'Why GraphQL will become the new standard for accessing external data in your React Native app. I will show how using GraphQL instead of REST services the development process becomes even more declarative as GraphQL will take away the (imperative) hassle of tying data from multiple endpoints together. This will increase the level of complexity in React Native development, while also increasing the performance of the application.'
-  },
-  {
-    day: 5,
-    time: '11:30',
-    date: '2018-09-05 11:30',
-    speaker: 'Coming Soon',
-    company: '',
-    title: '',
-    agenda: ''
-  },
-  {
-    day: 5,
-    time: '12:00',
-    date: '2018-09-05 12:00',
-    speaker: 'Coming Soon',
-    company: '',
-    title: '',
-    agenda: ''
-  },
-  {
-    day: 5,
-    time: '12:30',
-    date: '2018-09-05 12:30',
-    speaker: 'Lunch',
-    company: '',
-    title: '',
-    agenda: ''
   },
   {
     day: 5,
@@ -154,15 +100,6 @@ const data = [
     title: 'Paper: Welcome to Material Design 2.0',
     agenda:
       'react-native-paper has always tried to deliver first class components for your React Native app. Highly adaptable, accessible and theme awareness for both Android and iOS following material design guidelines in a strict way. In this lighting talk we are gonna explore what we can do with Paper and discover everything that the team has been working on the past few months.\n                    The talk will also include a live demo to show how easy and quick is to mimic a sketch from a material design app (changing whole theme in one click too!). We will also explore some of the most useful components we have and several cases where Paper comes handy.'
-  },
-  {
-    day: 5,
-    time: '16:00',
-    date: '2018-09-05 16:00',
-    speaker: 'Coffee break',
-    company: '',
-    title: '',
-    agenda: ''
   },
   {
     day: 5,
@@ -214,33 +151,6 @@ const data = [
   },
   {
     day: 6,
-    time: '10:30',
-    date: '2018-09-06 10:30',
-    speaker: 'Coming Soon',
-    company: '',
-    title: '',
-    agenda: ''
-  },
-  {
-    day: 6,
-    time: '11:00',
-    date: '2018-09-06 11:00',
-    speaker: 'Coffee break',
-    company: '',
-    title: '',
-    agenda: ''
-  },
-  {
-    day: 6,
-    time: '11:30',
-    date: '2018-09-06 11:30',
-    speaker: 'Coming Soon',
-    company: '',
-    title: '',
-    agenda: ''
-  },
-  {
-    day: 6,
     time: '12:00',
     date: '2018-09-06 12:00',
     speaker: 'Samuli Hakoniemi',
@@ -258,15 +168,6 @@ const data = [
     title: 'Demystifying complex animations creation process in React Native',
     agenda:
       'While Animations can be created in React Native pretty easily, real world mobile apps require a combination of several layers of animations, gestures and micro interaction animations to make user experience stand out. In this talk we will walk through the process from defining complex animation, to implementing it by going through all stages of animation creation process.'
-  },
-  {
-    day: 6,
-    time: '13:00',
-    date: '2018-09-06 13:00',
-    speaker: 'Lunch',
-    company: '',
-    title: '',
-    agenda: ''
   },
   {
     day: 6,
@@ -299,15 +200,6 @@ const data = [
   },
   {
     day: 6,
-    time: '15:30',
-    date: '2018-09-06 15:30',
-    speaker: 'Coffee break',
-    company: '',
-    title: '',
-    agenda: ''
-  },
-  {
-    day: 6,
     time: '16:00',
     date: '2018-09-06 16:00',
     speaker: 'Wouter van den Broek',
@@ -315,28 +207,7 @@ const data = [
     title: 'Getting to the Native in React Native',
     agenda:
       'The Native part in React Native can look very scary and intimidated but is does not have to be that way, so in this talk you will see what the most frequent challenges are when working on the native side of React Native and how to conquer them.\n                If you attend this session you see and learn how to solve a lot of native issues that pop up when working with React Native native code and modules.<br>\n                - The basic of the React Native native module<br>\n                What Is a native module in react native, what are all the moving parts, how do the function in the total process of react native and what is the potential<br>\n                - Extending native modules<br>\n                Native modules are easy extendable, you can use other languages like Swift or Kotlin and even other platforms (Windows/Mac). Also you can extend existing native modules form others if you want to<br>\n                - Building<br>\n                Showing what happens when building, how to solve build errors, solving dependencies and to release when building succeeded<br>\n                - Tips &amp; Tricks<br>\n                Some more tips and tricks when working with native code in your react native project which I encountered in my career.\n                '
-  },
-  {
-    day: 6,
-    time: '16:30',
-    date: '2018-09-06 16:30',
-    speaker: 'Q&A panel',
-    company: '',
-    title: '',
-    agenda: 'Quinlan Jung, Expo'
-  },
-  {
-    day: 6,
-    time: '17:15',
-    date: '2018-09-06 17:15',
-    speaker: 'Closing',
-    company: '',
-    title: '',
-    agenda: ''
   }
 ];
 
-export default data.map(item => ({
-  ...item,
-  slug: slugify(item.title || `${item.speaker} ${item.time}`)
-}));
+export default data;

@@ -6,12 +6,13 @@ import Animated from 'react-native-reanimated';
 import * as AnimUtils from '../AnimUtils';
 import * as theme from '../theme';
 
-const CELL_NUM = 7;
-const VIEWPORT_WIDTH = Dimensions.get('window').width;
-const SIDEBAR_WIDTH = VIEWPORT_WIDTH / 8;
-const CONTAINER_WIDTH = VIEWPORT_WIDTH - SIDEBAR_WIDTH;
-const CELL_WIDTH = CONTAINER_WIDTH / CELL_NUM;
-const PINCH_MAGNITUDE = 0.5;
+const {
+  CELL_NUM,
+  SIDEBAR_WIDTH,
+  CONTAINER_WIDTH,
+  CELL_WIDTH,
+  PINCH_MAGNITUDE
+} = theme.calendar;
 
 // The offset that a given cell at `index` needs to move
 // to be considered fully "zoomed", i.e. when `zoom := 1`
@@ -178,20 +179,18 @@ class CalendarColumns extends Component {
     const { children } = this.props;
 
     return (
-      <Animated.View style={styles.container} onLayout={this.onContentLayout}>
-        <PinchGestureHandler
-          onGestureEvent={this.onPinchEvent}
-          onHandlerStateChange={this.onPinchEvent}
-        >
-          <Animated.View style={[styles.container, this.containerStyle]}>
-            {this.columnStyles.map((style, index) => (
-              <Animated.View style={[styles.column, style]} key={index}>
-                {children ? children(index) : null}
-              </Animated.View>
-            ))}
-          </Animated.View>
-        </PinchGestureHandler>
-      </Animated.View>
+      <PinchGestureHandler
+        onGestureEvent={this.onPinchEvent}
+        onHandlerStateChange={this.onPinchEvent}
+      >
+        <Animated.View style={[styles.container, this.containerStyle]}>
+          {this.columnStyles.map((style, index) => (
+            <Animated.View style={[styles.column, style]} key={index}>
+              {children ? children(index) : null}
+            </Animated.View>
+          ))}
+        </Animated.View>
+      </PinchGestureHandler>
     );
   }
 }
