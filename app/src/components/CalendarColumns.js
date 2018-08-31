@@ -44,7 +44,7 @@ const getColumnWidths = (index, zoom) => {
 
 // Convert a `focalX` coordinate to a cell's index over time
 const getFocalIndex = focalX =>
-  AnimUtils.floor(Animated.divide(focalX, CELL_WIDTH));
+  Animated.floor(Animated.divide(focalX, CELL_WIDTH));
 
 // Constrain value to [0, 1]
 const applyZoomLimit = a => AnimUtils.limit(a, 0, 1);
