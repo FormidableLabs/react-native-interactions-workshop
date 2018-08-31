@@ -31,8 +31,8 @@ export const colors = {
 
 export const sizes = {
   hairline: StyleSheet.hairlineWidth,
-  small: '6px',
-  mid: '12px',
-  large: '24px',
+  small: 6,
+  mid: 12,
+  large: 24,
   cellWidth: `${CELL_WIDTH}px`
 };

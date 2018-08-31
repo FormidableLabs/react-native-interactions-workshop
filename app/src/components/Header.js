@@ -1,45 +1,45 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { SafeAreaView } from 'react-native';
 import styled from 'styled-components/native';
+import Animated from 'react-native-reanimated';
 
-const Container = styled.SafeAreaView`
+import * as AnimUtils from '../AnimUtils';
+import * as theme from '../theme';
+
+const { CELL_NUM, SIDEBAR_WIDTH, CONTAINER_WIDTH, CELL_WIDTH } = theme.calendar;
+
+const Outer = styled.SafeAreaView`
   flex-shrink: 0;
   background: ${p => p.theme.colors.header};
-`;
-
-const Wrapper = styled.View`
-  height: 80px;
   border-bottom-width: 1px;
   border-bottom-color: ${p => p.theme.colors.stroke};
 `;
 
-const TitleRow = styled.View`
-  flex-grow: 1;
-  flex-shrink: 0;
-  align-items: flex-start;
-  justify-content: center;
-`;
+const Inner = styled.View`
+  height: 80px;
+  padding-left: ${p => p.theme.calendar.SIDEBAR_WIDTH}px;
 
-const Row = styled.View`
-  flex-grow: 1;
-  flex-shrink: 0;
-  flex-direction: row;
-  width: 100%;
+  flex-direction: column;
+  justify-content: flex-end;
   align-items: stretch;
 `;
 
-const Column = styled.View`
-  width: ${p => p.theme.sizes.cellWidth};
+const TitleRow = styled.View`
   flex-direction: column;
-  align-items: center;
-  justify-content: flex-end;
+  justify-content: flex-start;
+  align-items: flex-start;
+  height: 25px;
+`;
+
+const Row = styled.View`
+  flex-direction: row;
+  align-items: stretch;
 `;
 
 const Title = styled.Text`
   text-align: left;
   font-size: 18px;
   color: ${p => p.theme.colors.text};
-  padding: 0 ${p => p.theme.sizes.large};
 `;
 
 const DateLabel = styled.Text`
@@ -50,24 +50,83 @@ const DateLabel = styled.Text`
   padding: ${p => p.theme.sizes.mid} 0;
 `;
 
-const Header = ({ labels }) => (
-  <Container>
-    <Wrapper>
-      <TitleRow>
-        <Title>React Native EU</Title>
-      </TitleRow>
-      <Row>
-        <Column />
-        {labels.map(label => (
-          <Column key={label}>
-            <DateLabel>
-              {label.toUpperCase()}
-            </DateLabel>
-          </Column>
-        ))}
-      </Row>
-    </Wrapper>
-  </Container>
-);
+const getFloatingPositions = (index, zoom) => {
+  const arr = Array.from({ length: CELL_NUM });
+  const opacity = Animated.interpolate(zoom, {
+    inputRange: [0, 0.5, 1],
+    outputRange: [1, 0, 0]
+  });
+
+  return arr.map((_, i) => {
+    const offsetX = i * CELL_WIDTH;
+    const isZooming = Animated.eq(index, i);
+
+    const translateX = Animated.interpolate(zoom, {
+      inputRange: [0, 0.8, 1],
+      outputRange: [0, -offsetX, -offsetX]
+    });
+
+    const translateY = Animated.interpolate(zoom, {
+      inputRange: [0, 0.8, 1],
+      outputRange: [0, -theme.sizes.mid / 2, -theme.sizes.mid / 2]
+    });
+
+    return {
+      opacity: Animated.cond(isZooming, 1, opacity),
+      transform: [
+        { translateX: Animated.cond(isZooming, translateX) },
+        { translateY: Animated.cond(isZooming, translateY) }
+      ]
+    };
+  });
+};
+
+class Header extends Component {
+  constructor(props) {
+    super(props);
+
+    const indexState = props.indexState || new Animated.Value(-1);
+    const zoomState = props.zoomState || new Animated.Value(0);
+
+    this.floatingPositions = getFloatingPositions(indexState, zoomState);
+  }
+
+  render() {
+    const { labels } = this.props;
+
+    return (
+      <Outer>
+        <Inner>
+          <TitleRow>
+            <Title>React Native EU</Title>
+          </TitleRow>
+
+          <Row>
+            {labels.map((label, i) => (
+              <Animated.Text
+                key={label}
+                style={[styles.columnLabel, this.floatingPositions[i]]}
+              >
+                {label.toUpperCase()}
+              </Animated.Text>
+            ))}
+          </Row>
+        </Inner>
+      </Outer>
+    );
+  }
+}
+
+const styles = {
+  columnLabel: {
+    width: CELL_WIDTH,
+    textAlign: 'center',
+    fontWeight: '500',
+    fontSize: 10,
+    color: theme.colors.label,
+    paddingTop: theme.sizes.mid,
+    paddingBottom: theme.sizes.mid
+  }
+};
 
 export default Header;

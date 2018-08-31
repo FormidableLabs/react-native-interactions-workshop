@@ -89,9 +89,9 @@ class CalendarColumns extends Component {
     super(props);
 
     // The current column that is being zoomed (none is -1)
-    const indexState = new Animated.Value(-1);
+    const indexState = props.indexState || new Animated.Value(-1);
     // The current zoom state, where 0 is closed and 1 is opened
-    const zoomState = new Animated.Value(0);
+    const zoomState = props.zoomState || new Animated.Value(0);
     // The current snap point animation clock
     const zoomClock = new Animated.Clock();
 
