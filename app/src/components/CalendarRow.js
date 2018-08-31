@@ -44,7 +44,7 @@ class CalendarRow extends Component {
     const renderProps = { gestureHandlerRef: waitFor };
 
     return (
-      <Wrapper waitFor={waitFor}>
+      <Wrapper waitFor={theme.isAndroid ? waitFor : undefined}>
         <Sidebar>
           {sidebar}
         </Sidebar>

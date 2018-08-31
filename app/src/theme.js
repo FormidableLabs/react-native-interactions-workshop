@@ -1,4 +1,4 @@
-import { Dimensions, StyleSheet } from 'react-native';
+import { Platform, Dimensions, StyleSheet } from 'react-native';
 
 const viewport = Dimensions.get('window');
 
@@ -8,6 +8,9 @@ const CONTAINER_WIDTH = viewport.width - SIDEBAR_WIDTH;
 const CELL_WIDTH = CONTAINER_WIDTH / CELL_NUM;
 const HOUR_HEIGHT = CELL_WIDTH * 2;
 const PINCH_MAGNITUDE = 0.5;
+
+export const isAndroid = Platform.OS === 'android';
+export const isIOS = Platform.OS === 'ios';
 
 export const calendar = {
   CELL_NUM,
