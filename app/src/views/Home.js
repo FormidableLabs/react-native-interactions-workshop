@@ -18,9 +18,11 @@ class Home extends Component {
       <Container>
         <Header labels={headerLabels} />
         <CalendarRow sidebar={<CalendarSidebar />}>
-          <CalendarColumns>
-            {i => <CalendarItemStack data={data[i]} navigate={navigate} />}
-          </CalendarColumns>
+          {({ gestureHandlerRef }) => (
+            <CalendarColumns gestureHandlerRef={gestureHandlerRef}>
+              {i => <CalendarItemStack data={data[i]} navigate={navigate} />}
+            </CalendarColumns>
+          )}
         </CalendarRow>
       </Container>
     )

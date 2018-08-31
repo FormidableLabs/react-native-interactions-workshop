@@ -176,10 +176,11 @@ class CalendarColumns extends Component {
   }
 
   render() {
-    const { children } = this.props;
+    const { gestureHandlerRef, children } = this.props;
 
     return (
       <PinchGestureHandler
+        ref={gestureHandlerRef}
         onGestureEvent={this.onPinchEvent}
         onHandlerStateChange={this.onPinchEvent}
       >
