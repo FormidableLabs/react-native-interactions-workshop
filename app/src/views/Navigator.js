@@ -13,6 +13,9 @@ export default createNavigator(
     }
   },
   {
+    navigationOptions: {
+      gesturesEnabled: true
+    },
     headerMode: 'none'
   }
 );

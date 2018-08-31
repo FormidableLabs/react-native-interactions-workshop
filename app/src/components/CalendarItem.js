@@ -31,7 +31,7 @@ const Card = styled.View`
   flex-direction: column;
   align-items: stretch;
 
-  background-color: ${p => p.theme.colors.card};
+  background-color: ${theme.colors.card};
   border-radius: 4px;
   padding: 4px;
 `;

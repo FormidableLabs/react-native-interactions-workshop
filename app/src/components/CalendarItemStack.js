@@ -34,6 +34,11 @@ const CalendarItemStack = ({ data, navigate }) => {
           key={i}
           item={item}
           style={styles[i]}
+          onPress={() => {
+            navigate('Event', {
+              event: item
+            });
+          }}
         />
       ))}
     </Wrapper>

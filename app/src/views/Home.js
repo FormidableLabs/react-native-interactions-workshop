@@ -15,7 +15,7 @@ class Home extends Component {
   zoomState = new Animated.Value(0);
 
   render() {
-    const { navigate } = this.props;
+    const { navigation: { navigate } } = this.props;
     const headerLabels = data.map(x => x.label);
 
     return (
