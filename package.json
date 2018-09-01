@@ -4,9 +4,13 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "mdx-deck workshop.mdx"
+    "start": "mdx-deck workshop.mdx",
+    "build": "mdx-deck build workshop.mdx -d .build",
+    "deploy": "netlifyctl deploy -P ./.build -n rneu-interactions"
   },
   "devDependencies": {
-    "mdx-deck": "^1.6.4"
+    "mdx-deck": "^1.7.1",
+    "mdx-deck-code-surfer": "^0.4.0",
+    "raw-loader": "^0.5.1"
   }
 }
