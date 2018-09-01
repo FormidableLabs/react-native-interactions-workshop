@@ -8,6 +8,7 @@ const { HOUR_HEIGHT } = theme.calendar;
 const Wrapper = styled.View`
   flex-direction: column;
   align-items: stretch;
+  top: -8px;
 `;
 
 const Row = styled.View`
@@ -16,16 +17,12 @@ const Row = styled.View`
   height: ${HOUR_HEIGHT}px;
 `;
 
-const RowItem = styled.View`
-  margin-top: -1px;
-  border-top-color: ${p => p.theme.colors.stroke};
-  border-top-width: 1px;
-  padding: 2px 4px;
-`;
-
 const Label = styled.Text`
   color: ${p => p.theme.colors.label};
+  line-height: 12px;
+  height: 12px;
   font-size: 10px;
+  padding: 2px 4px;
 `;
 
 const LABEL_FORMAT = 'HH:mm';
@@ -38,9 +35,7 @@ const CalendarSidebar = () => (
 
       return (
         <Row key={label}>
-          {i > 0 && (
-            <RowItem><Label>{label}</Label></RowItem>
-          )}
+          {i > 0 && <Label>{label}</Label>}
         </Row>
       );
     })}

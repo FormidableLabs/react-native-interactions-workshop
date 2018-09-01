@@ -15,7 +15,9 @@ class Home extends Component {
   zoomState = new Animated.Value(0);
 
   render() {
-    const { navigation: { navigate } } = this.props;
+    const {
+      navigation: { navigate }
+    } = this.props;
     const headerLabels = data.map(x => x.label);
     const headerTitles = data.map(x => x.title);
 
@@ -28,7 +30,7 @@ class Home extends Component {
           titles={headerTitles}
         />
 
-        <CalendarRow sidebar={<CalendarSidebar />}>
+        <CalendarRow sidebar={<CalendarSidebar />} zoomState={this.zoomState}>
           {({ gestureHandlerRef }) => (
             <CalendarColumns
               indexState={this.indexState}

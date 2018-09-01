@@ -1,6 +1,7 @@
 import React, { Component, createRef } from 'react';
-import { Dimensions } from 'react-native';
+import { View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
+import Animated from 'react-native-reanimated';
 import styled from 'styled-components/native';
 
 import * as theme from '../theme';
@@ -24,8 +25,6 @@ const Sidebar = styled.View.attrs({
   width: ${p => p.theme.calendar.SIDEBAR_WIDTH};
   flex-direction: column;
   align-items: stretch;
-  border-right-width: ${p => p.theme.sizes.hairline};
-  border-right-color: ${p => p.theme.colors.stroke};
   background-color: white;
 `;
 
@@ -38,6 +37,31 @@ const Content = styled.View`
 class CalendarRow extends Component {
   waitFor = createRef();
 
+  constructor(props) {
+    super(props);
+
+    const zoomState = props.zoomState || new Animated.Value(0);
+
+    const opacity = Animated.interpolate(zoomState, {
+      inputRange: [0, 0.5, 1],
+      outputRange: [0, 0, 1]
+    });
+
+    const scaleX = Animated.interpolate(zoomState, {
+      inputRange: [0, 0.5, 1],
+      outputRange: [0.8, 0.8, 1]
+    });
+
+    this.bgStyle = {
+      opacity,
+      transform: [{ scaleX }]
+    };
+
+    this.borderStyle = {
+      opacity: Animated.sub(1, opacity)
+    };
+  }
+
   render() {
     const { waitFor } = this;
     const { sidebar, children } = this.props;
@@ -46,14 +70,50 @@ class CalendarRow extends Component {
     return (
       <Wrapper waitFor={theme.isAndroid ? waitFor : undefined}>
         <Sidebar>
+          <Animated.View style={[styles.border, this.borderStyle]} />
           {sidebar}
         </Sidebar>
         <Content>
+          <Animated.View style={[styles.background, this.bgStyle]}>
+            {backgroundRows}
+          </Animated.View>
+
           {children(renderProps)}
         </Content>
       </Wrapper>
     );
   }
 }
+
+const styles = {
+  background: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
+    height: HOUR_HEIGHT * 24,
+    flexDirection: 'column',
+    alignItems: 'stretch'
+  },
+  row: {
+    height: HOUR_HEIGHT,
+    borderBottomWidth: theme.sizes.hairline,
+    borderBottomColor: theme.colors.stroke
+  },
+  border: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    borderRightWidth: theme.sizes.hairline,
+    borderRightColor: theme.colors.stroke
+  }
+}
+
+const backgroundRows = Array.from({ length: 23 }).map((_, i) => (
+  <View key={i} style={styles.row} />
+));
 
 export default CalendarRow;

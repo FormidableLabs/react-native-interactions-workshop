@@ -29,16 +29,27 @@ const getColumnWidths = (index, zoom) => {
   const arr = Array.from({ length: CELL_NUM });
 
   return arr.map((_, i) => {
+    const isZoomed = Animated.eq(index, i);
+
+    const opacity = Animated.cond(
+      isZoomed,
+      1,
+      Animated.interpolate(zoom, {
+        inputRange: [0, 0.5, 1],
+        outputRange: [1, 1, 0]
+      })
+    );
+
     const width = Animated.add(
       Animated.cond(
-        Animated.eq(index, i),
+        isZoomed,
         Animated.multiply(CONTAINER_WIDTH - CELL_WIDTH, zoom),
         0
       ),
       CELL_WIDTH
     );
 
-    return width;
+    return { width, opacity };
   });
 };
 
@@ -159,9 +170,7 @@ class CalendarColumns extends Component {
       ]
     };
 
-    this.columnStyles = getColumnWidths(index, zoom).map(width => ({
-      flexBasis: width
-    }));
+    this.columnStyles = getColumnWidths(index, zoom);
 
     this.onPinchEvent = Animated.event([
       {
