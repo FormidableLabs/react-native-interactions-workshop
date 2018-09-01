@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { SafeAreaView } from 'react-native';
+import { Text, View, SafeAreaView } from 'react-native';
 import styled from 'styled-components/native';
 import Animated from 'react-native-reanimated';
 
@@ -31,23 +31,15 @@ const TitleRow = styled.View`
   height: 25px;
 `;
 
-const Row = styled.View`
-  flex-direction: row;
-  align-items: stretch;
-`;
-
 const Title = styled.Text`
   text-align: left;
   font-size: 18px;
   color: ${p => p.theme.colors.text};
 `;
 
-const DateLabel = styled.Text`
-  text-align: center;
-  font-size: 10px;
-  font-weight: 500;
-  color: ${p => p.theme.colors.label};
-  padding: ${p => p.theme.sizes.mid} 0;
+const Row = styled.View`
+  flex-direction: row;
+  align-items: stretch;
 `;
 
 const getFloatingPositions = (index, zoom) => {
@@ -58,17 +50,18 @@ const getFloatingPositions = (index, zoom) => {
   });
 
   return arr.map((_, i) => {
-    const offsetX = i * CELL_WIDTH;
+    const offsetX = -1 * i * CELL_WIDTH - theme.sizes.mid;
+    const offsetY = -1 * theme.sizes.mid;
     const isZooming = Animated.eq(index, i);
 
     const translateX = Animated.interpolate(zoom, {
       inputRange: [0, 0.8, 1],
-      outputRange: [0, -offsetX, -offsetX]
+      outputRange: [0, offsetX, offsetX]
     });
 
     const translateY = Animated.interpolate(zoom, {
       inputRange: [0, 0.8, 1],
-      outputRange: [0, -theme.sizes.mid / 2, -theme.sizes.mid / 2]
+      outputRange: [0, offsetY, offsetY]
     });
 
     return {
@@ -81,6 +74,19 @@ const getFloatingPositions = (index, zoom) => {
   });
 };
 
+const getTitleOpacities = (index, zoom) => {
+  const arr = Array.from({ length: CELL_NUM });
+  const opacity = Animated.interpolate(zoom, {
+    inputRange: [0, 0.1, 0.8, 1],
+    outputRange: [0, 0, 1, 1]
+  });
+
+  return arr.map((_, i) => {
+    const isZooming = Animated.eq(index, i);
+    return { opacity: Animated.cond(isZooming, opacity, 0), };
+  });
+};
+
 class Header extends Component {
   constructor(props) {
     super(props);
@@ -89,10 +95,11 @@ class Header extends Component {
     const zoomState = props.zoomState || new Animated.Value(0);
 
     this.floatingPositions = getFloatingPositions(indexState, zoomState);
+    this.titleOpacities = getTitleOpacities(indexState, zoomState);
   }
 
   render() {
-    const { labels } = this.props;
+    const { labels, titles } = this.props;
 
     return (
       <Outer>
@@ -102,14 +109,27 @@ class Header extends Component {
           </TitleRow>
 
           <Row>
-            {labels.map((label, i) => (
-              <Animated.Text
-                key={label}
-                style={[styles.columnLabel, this.floatingPositions[i]]}
-              >
-                {label.toUpperCase()}
-              </Animated.Text>
-            ))}
+            {labels.map((label, i) => {
+              const title = titles[i];
+              const floatPos = this.floatingPositions[i];
+              const titleOpacity = this.titleOpacities[i];
+
+              return (
+                <Animated.View style={[styles.cell, floatPos]} key={label}>
+                  <Text
+                    style={[styles.label]}
+                  >
+                    {label}
+                  </Text>
+                  <Animated.Text
+                    numberOfLines={1}
+                    style={[styles.label, styles.title, titleOpacity]}
+                  >
+                    {title}
+                  </Animated.Text>
+                </Animated.View>
+              );
+            })}
           </Row>
         </Inner>
       </Outer>
@@ -118,14 +138,23 @@ class Header extends Component {
 }
 
 const styles = {
-  columnLabel: {
-    width: CELL_WIDTH,
-    textAlign: 'center',
+  cell: {
+    flexDirection: 'row',
+    width: CELL_WIDTH
+  },
+  label: {
+    textAlign: 'left',
     fontWeight: '500',
     fontSize: 10,
     color: theme.colors.label,
+    paddingLeft: theme.sizes.mid,
     paddingTop: theme.sizes.mid,
     paddingBottom: theme.sizes.mid
+  },
+  title: {
+    flexShrink: 0,
+    width: 3 * CELL_WIDTH,
+    paddingLeft: 0
   }
 };
 

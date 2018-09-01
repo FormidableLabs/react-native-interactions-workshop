@@ -17,6 +17,7 @@ class Home extends Component {
   render() {
     const { navigation: { navigate } } = this.props;
     const headerLabels = data.map(x => x.label);
+    const headerTitles = data.map(x => x.title);
 
     return (
       <Container>
@@ -24,6 +25,7 @@ class Home extends Component {
           indexState={this.indexState}
           zoomState={this.zoomState}
           labels={headerLabels}
+          titles={headerTitles}
         />
 
         <CalendarRow sidebar={<CalendarSidebar />}>
