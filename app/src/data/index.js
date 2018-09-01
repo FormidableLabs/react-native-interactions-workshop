@@ -49,8 +49,9 @@ const monday = startOfWeek(normalisedEvents[0].date, {
 
 const data = Array.from({ length: CELL_NUM }).map((_, i) => {
   const date = addDays(monday, i);
-  const label = format(date, 'EEEE').toUpperCase().slice(0, 3);
-  const title = `, ${date.getDate() - 1} ${format(date, 'MMM YYYY')}`;
+  const weekday = format(date, 'EEEE').toUpperCase()
+  const label = weekday.slice(0, 3);
+  const title = `${weekday.slice(3)}, ${date.getDate() - 1} ${format(date, 'MMM YYYY')}`;
 
   const items = normalisedEvents.filter(event => {
     return isSameDay(date, event.date);
