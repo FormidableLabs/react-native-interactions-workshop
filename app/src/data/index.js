@@ -34,7 +34,17 @@ const normalisedEvents = events
     const title = event.title || null;
     const speaker = event.speaker || null;
     const company = event.company || null;
-    const agenda = event.agenda || null;
+
+    // remove excess whitespace, preseve paragraps
+    // (real smart code here 👇)
+    const agenda = event.agenda
+      ? event.agenda
+          .trim()
+          .replace('\n', '<LINEBREAK>')
+          .replace(/\s+/g, ' ')
+          .replace('<LINEBREAK>', '\n\n')
+      : null;
+
     const duration = event.duration || 0.5; // in hours
     const profile = speaker ? speakerLookup[slugify(speaker)] : undefined;
     const isTalk = !!profile;
@@ -42,7 +52,6 @@ const normalisedEvents = events
     if (!date || (!title && !speaker)) {
       return null;
     }
-
     return {
       slug: slugify(`${title} ${getTime(date)}`),
       title: title || speaker,

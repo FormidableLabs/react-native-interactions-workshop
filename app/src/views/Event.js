@@ -6,7 +6,8 @@ import * as theme from '../theme';
 const Wrapper = styled.ScrollView``;
 
 const Header = styled.View`
-  background-color: ${p => p.isTalk ? theme.colors.card : theme.colors.inactive};
+  background-color: ${p =>
+    p.isTalk ? theme.colors.card : theme.colors.inactive};
   padding: 20px 10px 20px 10px;
 `;
 
@@ -35,7 +36,7 @@ const Speaker = styled.Text`
 const Agenda = styled.Text`
   font-size: 14px;
   line-height: 18px;
-  padding: 20px;
+  padding: 20px 10px 40px 10px;
 `;
 
 const Event = ({ navigation }) => {
