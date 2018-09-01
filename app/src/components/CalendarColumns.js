@@ -35,8 +35,8 @@ const getColumnWidths = (index, zoom) => {
       isZoomed,
       1,
       Animated.interpolate(zoom, {
-        inputRange: [0, 0.5, 1],
-        outputRange: [1, 1, 0]
+        inputRange: [0, 0.7, 1],
+        outputRange: [1, 0, 0]
       })
     );
 

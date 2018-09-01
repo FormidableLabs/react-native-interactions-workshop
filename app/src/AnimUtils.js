@@ -24,8 +24,8 @@ export const runSpring = (clock, value, velocity) => {
       new Animated.Value(0)
     ),
     // Some spring behaviour config:
-    damping: 7,
-    mass: 1,
+    damping: 7.5,
+    mass: 1.2,
     stiffness: 121.6,
     overshootClamping: true,
     restSpeedThreshold: 0.001,
