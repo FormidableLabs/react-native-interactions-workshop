@@ -33,9 +33,27 @@ import slugify from 'slugify';
 const data = [
   {
     day: 5,
+    time: '08:30',
+    date: '2018-09-05 08:30',
+    speaker: 'Registration',
+    company: '',
+    title: '',
+    agenda: ''
+  },
+  {
+    day: 5,
+    time: '09:20',
+    date: '2018-09-05 09:20',
+    speaker: 'Mike Grabowski',
+    company: 'CALLSTACK',
+    title: 'Introduction',
+    agenda: ''
+  },
+  {
+    day: 5,
     time: '09:30',
     date: '2018-09-05 09:30',
-    speaker: 'Mike Grabowski & Mateusz Zatorski',
+    speaker: 'Mike Grabowski',
     company: 'CALLSTACK',
     title: 'Keynote',
     agenda: ''
@@ -52,6 +70,15 @@ const data = [
   },
   {
     day: 5,
+    time: '10:30',
+    date: '2018-09-05 10:30',
+    speaker: 'Coffee break',
+    company: '',
+    title: '',
+    agenda: ''
+  },
+  {
+    day: 5,
     time: '11:00',
     date: '2018-09-05 11:00',
     speaker: 'Roy Derks',
@@ -59,6 +86,35 @@ const data = [
     title: 'GraphQL Will Do To REST What JSON Did To XML',
     agenda:
       'Why GraphQL will become the new standard for accessing external data in your React Native app. I will show how using GraphQL instead of REST services the development process becomes even more declarative as GraphQL will take away the (imperative) hassle of tying data from multiple endpoints together. This will increase the level of complexity in React Native development, while also increasing the performance of the application.'
+  },
+  {
+    day: 5,
+    time: '11:30',
+    date: '2018-09-05 11:30',
+    speaker: 'Sara Vieira',
+    company: 'YLD',
+    title: 'GQL all the Things!',
+    agenda:
+      "\n                Let's take a look at look at what we can do with React Apollo today, how we can use it to even manage our local state and see what the future holds for us in the new releases of React Apollo.\n              "
+  },
+  {
+    day: 5,
+    time: '12:00',
+    date: '2018-09-05 12:00',
+    speaker: 'Krzysztof Magiera',
+    company: 'SOFTWARE MANSION',
+    title: 'It all starts with navigation',
+    agenda:
+      '\n                For the past 2.5 years I\'ve been working on a bunch of projects, all aiming to expose some native capabilities to be controlled from JavaScript in React Native app. Most notable ones were: native driver support for Animated and two libraries: React Native Gesture Handler and Reanimated. All these projects were inspired by needs of navigation libraries and were meant to fill the gap between platform native navigation solutions and ones that are available in React Native.<br>\n                Our React Native projects often starts by deciding whether to go with native navigation (react-native-navigation) or JS navigation library (react-navigation). But given all these improvements can we still call react-navigation "not native"? In this talk we will learn how Gesture Handler and Reanimated libraries came to live with navigation being the driving force. In this context I will discuss how far is react-navigation from finally proclaiming the badge of really native navigation library.\n              '
+  },
+  {
+    day: 5,
+    time: '12:30',
+    date: '2018-09-05 12:30',
+    speaker: 'Lunch',
+    company: '',
+    title: '',
+    agenda: ''
   },
   {
     day: 5,
@@ -79,7 +135,7 @@ const data = [
     title:
       'Wrangling Your Workflow - Taking Charge of React Native Deployments',
     agenda:
-      "How to hang a painting on the wall with React Native\n                  So you want to buy a painting, but not sure which one. Or where to place it? we have a solution. Just use your phone for this.\n                  Augmented reality becomes more popular in a recent years. Companies like Apple or Google invests ton of money to develop AR support. Smartphones became powerful enough to deal with all this new features. And it'll be ridiculous not to use all this power when looking for the best place to put a piece of art.\n                  In this talk we'll be looking at ARKit from Apple and the ways how we can use it with React Native. We'll be building a simple app to hang paintings on the wall and learning how to deal with newest AR technologies."
+      "How to hang a painting on the wall with React Native\n                  So you want to buy a painting, but not sure which one. Or where to place it? we have a solution. Just use your phone for this.\n                  Augmented reality becomes more popular in recent years. Companies like Apple or Google invests tons of money to develop AR support. Smartphones became powerful enough to deal with all these new features. And it'll be ridiculous not to use all this power when looking for the best place to put a piece of art.\n                  In this talk we'll be looking at ARKit from Apple and the ways how we can use it with React Native. We'll be building a simple app to hang paintings on the wall and learning how to deal with newest AR technologies."
   },
   {
     day: 5,
@@ -99,7 +155,16 @@ const data = [
     company: 'CALLSTACK',
     title: 'Paper: Welcome to Material Design 2.0',
     agenda:
-      'react-native-paper has always tried to deliver first class components for your React Native app. Highly adaptable, accessible and theme awareness for both Android and iOS following material design guidelines in a strict way. In this lighting talk we are gonna explore what we can do with Paper and discover everything that the team has been working on the past few months.\n                    The talk will also include a live demo to show how easy and quick is to mimic a sketch from a material design app (changing whole theme in one click too!). We will also explore some of the most useful components we have and several cases where Paper comes handy.'
+      'react-native-paper has always tried to deliver first class components for your React Native application. Highly adaptable, accessible and theme awareness for both Android and iOS following material design guidelines in a strict way. In this lighting talk we are gonna explore what we can do with Paper and discover everything that the team has been working on the past few months.'
+  },
+  {
+    day: 5,
+    time: '16:00',
+    date: '2018-09-05 16:00',
+    speaker: 'Coffee break',
+    company: '',
+    title: '',
+    agenda: ''
   },
   {
     day: 5,
@@ -133,21 +198,50 @@ const data = [
     day: 6,
     time: '09:30',
     date: '2018-09-06 09:30',
-    speaker: 'Harry Tormey',
-    company: '',
-    title: 'React Native Brownfield - Lessons from the Trenches',
-    agenda:
-      '\n                Hot reloading--the ability to push over the air updates to published apps and the promise of having your app “just work” out of the box on Android as well as iOS--make React Native a tempting proposition for frontend developers. But what do you do when you have to integrate React Native into a large existing native code base?\n              '
-  },
-  {
-    day: 6,
-    time: '10:00',
-    date: '2018-09-06 10:00',
     speaker: 'Gant Laborde',
     company: 'INFINITE RED',
     title: 'Taming The Machine',
     agenda:
       "\n                Machine Learning is a buzzword, because big companies love it.  Big companies love it, because it's insanely cool.   Join me as we cover the breath-taking aspects of Machine Learning (ML) and dive deep into how it's currently showing up in mobile; especially React Native.  We'll touch the tip of the iceberg and spark ML creativity for everyone!\n              "
+  },
+  {
+    day: 6,
+    time: '10:00',
+    date: '2018-09-06 10:00',
+    speaker: 'Jani Eväkallio',
+    company: 'FORMIDABLE LABS',
+    title: 'This is a Talk About You',
+    agenda:
+      '\n                Over the last three years, I’ve spoken to hundreds of React Native developers, and slowly a picture emerges. It’s a picture of excitement and frustration, obsession with technology and pushing the boundaries. It’s a picture of you.\n                This talk will blend meticulous research, subjective personal experiences and speculative fiction to discover the core of that elusive Developer Experience, and ask the inconvenient questions you’ve always been afraid to ask.              '
+  },
+  {
+    day: 6,
+    time: '10:30',
+    date: '2018-09-06 10:30',
+    speaker: 'Rafael de Oleza',
+    company: 'FACEBOOK',
+    title: 'Building JavaScript bundles for React Native',
+    agenda:
+      "\n                React Native uses Metro for building the JavaScript code that runs on the devices, both during development and production.<br>\n                In this talk you'll learn the main concepts about bundling JavaScript code (both for web applications and React Native) and the architecture of Metro, which is focused around build speed.\n              "
+  },
+  {
+    day: 6,
+    time: '11:00',
+    date: '2018-09-06 11:00',
+    speaker: 'Coffee break',
+    company: '',
+    title: '',
+    agenda: ''
+  },
+  {
+    day: 6,
+    time: '11:30',
+    date: '2018-09-06 11:30',
+    speaker: 'Harry Tormey',
+    company: '',
+    title: 'React Native Brownfield - Lessons from the Trenches',
+    agenda:
+      '\n                Hot reloading--the ability to push over the air updates to published apps and the promise of having your app “just work” out of the box on Android as well as iOS--make React Native a tempting proposition for frontend developers. But what do you do when you have to integrate React Native into a large existing native code base?\n              '
   },
   {
     day: 6,
@@ -171,12 +265,22 @@ const data = [
   },
   {
     day: 6,
+    time: '13:00',
+    date: '2018-09-06 13:00',
+    speaker: 'Lunch',
+    company: '',
+    title: '',
+    agenda: ''
+  },
+  {
+    day: 6,
     time: '14:00',
     date: '2018-09-06 14:00',
     speaker: 'David Vacca',
     company: 'FACEBOOK',
     title: 'The state of React Native',
-    agenda: ''
+    agenda:
+      'This presentation will focus on core projects the React Native team is working on, particularly regarding the re-architecture of the framework.'
   },
   {
     day: 6,
@@ -196,7 +300,16 @@ const data = [
     company: 'MCKINSEY & COMPANY',
     title: 'Building apps for everyone - Accessibility with React Native',
     agenda:
-      'Developers constantly strive to make stunning apps which not only solve day to day problems but augment life of their users in a way that the app becomes an important part of their lives. The examples of such disruptive apps is endless but at the same time it’s also important that an app for many does not leave few behind. In our quest for building next great app Apple and Android both provides apis to keep accessibility integral part of application design. In this talk I’ll be introducing this concept to every React Native developer and give handson how they can make use of voiceover, accessibility properties and other accessibility elements part of their their RN app to make an application inclusive for all. I am equally excited to talk and give demo on this topic since such reminders have far reaching effect on developer community when they build their next app.'
+      'Developers constantly strive to make stunning apps which not only solve day to day problems but augment life of their users in a way that the app becomes an important part of their lives. The examples of such disruptive apps is endless but at the same time it’s also important that an app for many does not leave few behind. In our quest for building next great app Apple and Android both provides apis to keep accessibility integral part of application design. In this talk I’ll be introducing this concept to every React Native developer and give handson how they can make use of voiceover, accessibility properties and other accessibility elements part of their RN app to make an application inclusive for all. I am equally excited to talk and give demo on this topic since such reminders have far reaching effect on developer community when they build their next app.'
+  },
+  {
+    day: 6,
+    time: '15:30',
+    date: '2018-09-06 15:30',
+    speaker: 'Coffee break',
+    company: '',
+    title: '',
+    agenda: ''
   },
   {
     day: 6,
@@ -207,7 +320,24 @@ const data = [
     title: 'Getting to the Native in React Native',
     agenda:
       'The Native part in React Native can look very scary and intimidated but is does not have to be that way, so in this talk you will see what the most frequent challenges are when working on the native side of React Native and how to conquer them.\n                If you attend this session you see and learn how to solve a lot of native issues that pop up when working with React Native native code and modules.<br>\n                - The basic of the React Native native module<br>\n                What Is a native module in react native, what are all the moving parts, how do the function in the total process of react native and what is the potential<br>\n                - Extending native modules<br>\n                Native modules are easy extendable, you can use other languages like Swift or Kotlin and even other platforms (Windows/Mac). Also you can extend existing native modules form others if you want to<br>\n                - Building<br>\n                Showing what happens when building, how to solve build errors, solving dependencies and to release when building succeeded<br>\n                - Tips &amp; Tricks<br>\n                Some more tips and tricks when working with native code in your react native project which I encountered in my career.\n                '
+  },
+  {
+    day: 6,
+    time: '16:30',
+    date: '2018-09-06 16:30',
+    speaker: 'Q&A panel',
+    company: '',
+    title: '',
+    agenda: 'Quinlan Jung, Expo'
+  },
+  {
+    day: 6,
+    time: '17:15',
+    date: '2018-09-06 17:15',
+    speaker: 'Closing',
+    company: '',
+    title: '',
+    agenda: ''
   }
 ];
-
 export default data;
