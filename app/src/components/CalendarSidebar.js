@@ -20,7 +20,6 @@ const Row = styled.View`
 const Label = styled.Text`
   color: ${p => p.theme.colors.label};
   line-height: 12px;
-  height: 12px;
   font-size: 10px;
   padding: 2px 4px;
 `;

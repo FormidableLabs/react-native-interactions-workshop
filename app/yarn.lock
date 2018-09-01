@@ -3673,9 +3673,9 @@ react-native-maps@0.21.0:
     babel-plugin-module-resolver "^2.3.0"
     babel-preset-react-native "1.9.0"
 
-react-native-reanimated@./vendor/react-native-reanimated-v1.0.0-alpha.3.patchexpo29.tgz, react-native-reanimated@1.0.0-alpha.3:
-  version "1.0.0-alpha.3.patchexpo29"
-  resolved "./vendor/react-native-reanimated-v1.0.0-alpha.3.patchexpo29.tgz#38f3f250583a290500dc4d41b220717e042a6a1d"
+react-native-reanimated@./vendor/react-native-reanimated-v1.0.0-alpha.3.patchexpo29.2.tgz, react-native-reanimated@1.0.0-alpha.3:
+  version "1.0.0-alpha.3.patchexpo29.2"
+  resolved "./vendor/react-native-reanimated-v1.0.0-alpha.3.patchexpo29.2.tgz#2229a32017c4b8bcbbbe71d71910dba92cdd325a"
 
 react-native-safe-area-view@^0.7.0:
   version "0.7.0"
