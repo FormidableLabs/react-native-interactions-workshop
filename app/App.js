@@ -9,3 +9,7 @@ export default () => (
     <Navigator />
   </ThemeProvider>
 );
+
+console.ignoredYellowBox = [
+  'Warning: Failed prop type: Invalid prop `onHandlerStateChange`'
+];
