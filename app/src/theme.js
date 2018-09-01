@@ -26,7 +26,8 @@ export const colors = {
   text: '#191819',
   label: '#7c7284',
   stroke: '#d3cbd8',
-  card: '#f74c4f'
+  card: '#e53d40',
+  inactive: '#a7abb7'
 };
 
 export const sizes = {

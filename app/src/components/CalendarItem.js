@@ -31,14 +31,21 @@ const Card = styled.View`
   flex-direction: column;
   align-items: stretch;
 
-  background-color: ${theme.colors.card};
+  background-color: ${p => p.isTalk ? theme.colors.card : theme.colors.inactive};
   border-radius: 4px;
   padding: 4px;
 `;
 
-const Title = styled(Animated.Text)`
+const Title = styled.Text`
   color: white;
   font-size: 12px;
+  line-height: 15px;
+`;
+
+const Speaker = styled.Text`
+  color: white;
+  font-style: italic;
+  font-size: 10px;
   line-height: 15px;
 `;
 
@@ -60,9 +67,10 @@ const AnimatedCard = ({ progress, height, item }) => {
     : 1;
 
   return (
-    <Card style={{ height }}>
+    <Card style={{ height }} isTalk={item.isTalk}>
       <Animated.View style={{ opacity }}>
         <Title>{item.title}</Title>
+        {item.profile && <Speaker>{item.profile.name}</Speaker>}
       </Animated.View>
     </Card>
   );

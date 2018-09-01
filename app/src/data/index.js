@@ -31,21 +31,24 @@ const normalisedEvents = events
     const day = event.day || null;
     const date = setDate(parseDate(event.date), day + 1);
 
-    if (!date) {
-      return null;
-    }
-
     const title = event.title || null;
     const speaker = event.speaker || null;
     const company = event.company || null;
     const agenda = event.agenda || null;
     const duration = event.duration || 0.5; // in hours
+    const profile = speaker ? speakerLookup[slugify(speaker)] : undefined;
+    const isTalk = !!profile;
+
+    if (!date || (!title && !speaker)) {
+      return null;
+    }
 
     return {
-      slug: getTime(date),
-      title: title || `${event.speaker} ${event.time}`.trim(),
-      speaker,
-      profile: speakerLookup[slugify(speaker)],
+      slug: slugify(`${title} ${getTime(date)}`),
+      title: title || speaker,
+      isTalk,
+      speaker: isTalk ? speaker : null,
+      profile,
       company,
       agenda,
       date,

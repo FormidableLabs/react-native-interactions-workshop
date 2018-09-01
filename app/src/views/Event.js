@@ -6,7 +6,7 @@ import * as theme from '../theme';
 const Wrapper = styled.ScrollView``;
 
 const Header = styled.View`
-  background-color: ${theme.colors.card};
+  background-color: ${p => p.isTalk ? theme.colors.card : theme.colors.inactive};
   padding: 20px 10px 20px 10px;
 `;
 
@@ -51,7 +51,7 @@ const Event = ({ navigation }) => {
         />
       )}
       <Transition shared={`eventTitle-${event.slug}`}>
-        <Header>
+        <Header isTalk={event.isTalk}>
           <Transition appear="left">
             <HeaderContent>
               <Title>{event.title}</Title>

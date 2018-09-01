@@ -42,10 +42,10 @@ const data = [
     day: 5,
     time: '09:20',
     date: '2018-09-05 09:20',
-    speaker: 'Mike Grabowski',
     company: 'CALLSTACK',
     title: 'Introduction',
-    agenda: ''
+    agenda: '',
+    duration: 0.16
   },
   {
     day: 5,
@@ -149,11 +149,10 @@ const data = [
     day: 5,
     time: '15:00',
     date: '2018-09-05 15:00',
-    speaker: 'LIGHTNING TALKS',
     company: 'CALLSTACK',
-    title: 'Paper: Welcome to Material Design 2.0',
+    title: 'Lightning Talks',
     agenda:
-      'react-native-paper has always tried to deliver first class components for your React Native application. Highly adaptable, accessible and theme awareness for both Android and iOS following material design guidelines in a strict way. In this lighting talk we are gonna explore what we can do with Paper and discover everything that the team has been working on the past few months.'
+      'Five high quality lightning talks by different speakers: "Paper: Welcome to Material Design 2.0", "Understanding "Native" in React Native", "Going Native: Reusing Code", "Building Bluetooth powered React Native Apps", and "Developing iOS apps on Linux"'
   },
   {
     day: 5,

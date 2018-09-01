@@ -83,7 +83,7 @@ const getTitleOpacities = (index, zoom) => {
 
   return arr.map((_, i) => {
     const isZooming = Animated.eq(index, i);
-    return { opacity: Animated.cond(isZooming, opacity, 0), };
+    return { opacity: Animated.cond(isZooming, opacity, 0) };
   });
 };
 
@@ -116,11 +116,7 @@ class Header extends Component {
 
               return (
                 <Animated.View style={[styles.cell, floatPos]} key={label}>
-                  <Text
-                    style={[styles.label]}
-                  >
-                    {label}
-                  </Text>
+                  <Text style={[styles.label]}>{label}</Text>
                   <Animated.Text
                     numberOfLines={1}
                     style={[styles.label, styles.title, titleOpacity]}
