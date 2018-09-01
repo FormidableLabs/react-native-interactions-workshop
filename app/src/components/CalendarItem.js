@@ -1,12 +1,17 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import { Animated } from 'react-native';
+import { Animated, Platform } from 'react-native';
 import { getHours, getMinutes } from 'date-fns';
 import { RectButton } from 'react-native-gesture-handler';
 import { Transition } from 'react-navigation-fluid-transitions';
 
 import * as theme from '../theme';
 import CalendarTitle from './CalendarTitle';
+
+const ellipsizeMode = Platform.select({
+  ios: 'clip',
+  android: 'tail'
+});
 
 const { HOUR_HEIGHT } = theme.calendar;
 
@@ -31,15 +36,16 @@ const Card = styled.View`
   flex-direction: column;
   align-items: stretch;
 
-  background-color: ${p => p.isTalk ? theme.colors.card : theme.colors.inactive};
+  background-color: ${p =>
+    p.isTalk ? theme.colors.card : theme.colors.inactive};
   border-radius: 4px;
   padding: 4px;
 `;
 
 const Title = styled.Text.attrs({
   allowFontScaling: false,
-  numberOfLines: p => p.expand ? 2 : 1,
-  ellipsizeMode: 'clip'
+  numberOfLines: p => (p.expand ? 2 : 1),
+  ellipsizeMode
 })`
   flex-grow: 0;
   flex-shrink: 1;
@@ -51,7 +57,7 @@ const Title = styled.Text.attrs({
 const Speaker = styled.Text.attrs({
   allowFontScaling: false,
   numberOfLines: 1,
-  ellipsizeMode: 'clip'
+  ellipsizeMode
 })`
   flex-grow: 0;
   flex-shrink: 2;
@@ -80,7 +86,14 @@ const AnimatedCard = ({ progress, height, item }) => {
 
   return (
     <Card style={{ height }} isTalk={item.isTalk}>
-      <Animated.View style={{ flexDirection: 'column', alignItems: 'stretch', flex: 1, opacity }}>
+      <Animated.View
+        style={{
+          flexDirection: 'column',
+          alignItems: 'stretch',
+          flex: 1,
+          opacity
+        }}
+      >
         <Title expand={!item.profile}>{item.title}</Title>
         {item.profile && <Speaker>{item.profile.name}</Speaker>}
       </Animated.View>
