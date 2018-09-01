@@ -40,9 +40,10 @@ const normalisedEvents = events
     const agenda = event.agenda
       ? event.agenda
           .trim()
-          .replace('\n', '<LINEBREAK>')
+          .replace('\n', '<p>')
           .replace(/\s+/g, ' ')
-          .replace('<LINEBREAK>', '\n\n')
+          .replace(/<br>/g, '\n')
+          .replace(/<p>/g, '\n\n')
       : null;
 
     const duration = event.duration || 0.5; // in hours
