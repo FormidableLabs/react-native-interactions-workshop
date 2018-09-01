@@ -1,5 +1,3 @@
-import slugify from 'slugify';
-
 // scraped from https://react-native.eu/
 /*
   copy(
