@@ -10,6 +10,9 @@ import CalendarColumns from '../components/CalendarColumns';
 import CalendarSidebar from '../components/CalendarSidebar';
 import CalendarItemStack from '../components/CalendarItemStack';
 
+/**
+ * Calendar view
+ */
 class Home extends Component {
   indexState = new Animated.Value(-1);
   zoomState = new Animated.Value(0);

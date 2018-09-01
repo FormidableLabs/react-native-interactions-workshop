@@ -2,8 +2,10 @@ import React from 'react';
 import styled from 'styled-components/native';
 import { Transition } from 'react-navigation-fluid-transitions';
 import * as theme from '../theme';
+import BackButton from '../components/BackButton';
+import Container from '../components/Container';
 
-const Wrapper = styled.ScrollView``;
+const Scrollable = styled.ScrollView``;
 
 const Header = styled.View`
   background-color: ${p =>
@@ -39,32 +41,38 @@ const Agenda = styled.Text`
   padding: 20px 10px 40px 10px;
 `;
 
+/**
+ * Detail page for a single talk or other program event
+ */
 const Event = ({ navigation }) => {
   const event = navigation.getParam('event', {});
   const photo = event.profile && event.profile.photo;
   return (
-    <Wrapper>
-      {photo && (
-        <Photo
-          source={{ uri: photo.uri }}
-          width={photo.width}
-          height={photo.height}
-        />
-      )}
-      <Transition shared={`eventTitle-${event.slug}`}>
-        <Header isTalk={event.isTalk}>
-          <Transition appear="left">
-            <HeaderContent>
-              <Title>{event.title}</Title>
-              <Speaker>{event.speaker}</Speaker>
-            </HeaderContent>
-          </Transition>
-        </Header>
-      </Transition>
-      <Transition appear="bottom">
-        <Agenda>{event.agenda || 'Nothing much to say about this.'}</Agenda>
-      </Transition>
-    </Wrapper>
+    <Container>
+      <Scrollable>
+        {photo && (
+          <Photo
+            source={{ uri: photo.uri }}
+            width={photo.width}
+            height={photo.height}
+          />
+        )}
+        <Transition shared={`eventTitle-${event.slug}`}>
+          <Header isTalk={event.isTalk}>
+            <Transition appear="left">
+              <HeaderContent>
+                <Title>{event.title}</Title>
+                <Speaker>{event.speaker}</Speaker>
+              </HeaderContent>
+            </Transition>
+          </Header>
+        </Transition>
+        <Transition appear="bottom">
+          <Agenda>{event.agenda || 'Nothing much to say about this.'}</Agenda>
+        </Transition>
+      </Scrollable>
+      <BackButton onPress={() => navigation.goBack()} />
+    </Container>
   );
 };
 
