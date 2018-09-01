@@ -3,12 +3,11 @@ import styled from 'styled-components/native';
 import { Transition } from 'react-navigation-fluid-transitions';
 import * as theme from '../theme';
 
-const Wrapper = styled.View``;
+const Wrapper = styled.ScrollView``;
 
 const Header = styled.View`
-  height: 120px;
   background-color: ${theme.colors.card};
-  padding: 32px 10px 10px 10px;
+  padding: 20px 10px 20px 10px;
 `;
 
 const HeaderContent = styled.View`
@@ -22,6 +21,11 @@ const Title = styled.Text`
   margin-bottom: 4px;
 `;
 
+const Photo = styled.Image`
+  width: 100%;
+  aspect-ratio: ${p => p.width / p.height};
+`;
+
 const Speaker = styled.Text`
   color: white;
   font-size: 12px;
@@ -29,18 +33,26 @@ const Speaker = styled.Text`
 `;
 
 const Agenda = styled.Text`
-  font-size: 12px;
-  line-height: 14px;
-  margin-top: 14px;
+  font-size: 14px;
+  line-height: 18px;
+  padding: 20px;
 `;
 
-const Home = ({ navigation }) => {
+const Event = ({ navigation }) => {
   const event = navigation.getParam('event', {});
+  const photo = event.profile && event.profile.photo;
   return (
     <Wrapper>
+      {photo && (
+        <Photo
+          source={{ uri: photo.uri }}
+          width={photo.width}
+          height={photo.height}
+        />
+      )}
       <Transition shared={`eventTitle-${event.slug}`}>
         <Header>
-          <Transition appear="top">
+          <Transition appear="left">
             <HeaderContent>
               <Title>{event.title}</Title>
               <Speaker>{event.speaker}</Speaker>
@@ -49,10 +61,10 @@ const Home = ({ navigation }) => {
         </Header>
       </Transition>
       <Transition appear="bottom">
-        <Agenda>{event.agenda}</Agenda>
+        <Agenda>{event.agenda || 'Nothing much to say about this.'}</Agenda>
       </Transition>
     </Wrapper>
   );
 };
 
-export default Home;
+export default Event;
