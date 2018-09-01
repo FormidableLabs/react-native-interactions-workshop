@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "start": "mdx-deck workshop.mdx",
-    "build": "mdx-deck build workshop.mdx -d .build",
+    "build": "mdx-deck build --no-html workshop.mdx -d .build",
     "deploy": "netlifyctl deploy -P ./.build -n rneu-interactions"
   },
   "devDependencies": {
