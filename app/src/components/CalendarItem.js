@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import Animated from 'react-native-reanimated';
+import { Animated } from 'react-native';
 import { getHours, getMinutes } from 'date-fns';
 import { RectButton } from 'react-native-gesture-handler';
 import { Transition } from 'react-navigation-fluid-transitions';
@@ -40,7 +40,33 @@ const Title = styled(Animated.Text)`
   color: white;
   font-size: 12px;
   line-height: 15px;
-`
+`;
+
+const disappear = ({ progress, start, end }) => {
+  const opacity = progress.interpolate({
+    inputRange: [start, start, end],
+    outputRange: [1, 1, 0]
+  });
+
+  return { opacity };
+};
+
+const AnimatedCard = ({ progress, height, item }) => {
+  const opacity = progress
+    ? progress.interpolate({
+        inputRange: [0, 0.1, 1],
+        outputRange: [1, 0, 0]
+      })
+    : 1;
+
+  return (
+    <Card style={{ height }}>
+      <Animated.View style={{ opacity }}>
+        <Title>{item.title}</Title>
+      </Animated.View>
+    </Card>
+  );
+};
 
 const CalendarItem = ({ item, style, onPress }) => {
   const height = style.height || 0;
@@ -48,10 +74,8 @@ const CalendarItem = ({ item, style, onPress }) => {
   return (
     <Wrapper style={style}>
       <Item onPress={onPress}>
-        <Transition shared={`eventTitle-${item.slug}`} animated="tweenState">
-          <Card style={{ height }}>
-            <Title>{item.title}</Title>
-          </Card>
+        <Transition shared={`eventTitle-${item.slug}`} animated="progress">
+          <AnimatedCard height={height} item={item} />
         </Transition>
       </Item>
     </Wrapper>

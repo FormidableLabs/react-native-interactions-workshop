@@ -1,11 +1,13 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import { Transition } from 'react-navigation-fluid-transitions';
+import * as theme from '../theme';
+
 const Wrapper = styled.View``;
 
 const Header = styled.View`
   height: 120px;
-  background-color: blue;
+  background-color: ${theme.colors.card};
   padding: 32px 10px 10px 10px;
 `;
 
