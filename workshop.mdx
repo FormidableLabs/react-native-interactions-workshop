@@ -1,5 +1,7 @@
-import Video from './presentation/components/Video';
 import { CodeSurfer } from 'mdx-deck-code-surfer';
+import prismTheme from 'prism-react-renderer/themes/nightOwl';
+import Video from './presentation/components/Video';
+export { default as theme } from './presentation/theme';
 
 # React Native Animations & Interactions
 
@@ -55,7 +57,7 @@ https://rneu-interactions.netlify.com
 
 <Video url="https://media.giphy.com/media/CtLMCCLylm3o4/giphy.mp4" />
 
-###### wat
+## wat
 
 ---
 
@@ -82,19 +84,19 @@ https://rneu-interactions.netlify.com
 ---
 
 <CodeSurfer
-title="Animated"
-notes=""
-code={require("!raw-loader!./presentation/snippets/animated.js")}
-lang="javascript"
-showNumbers
-dark={false}
-steps={[
-{ tokens: {2: [8, 13]}, notes: "It's built into React Native" },
-{ lines: [6], notes: "We create an animated value container " },
-{ range: [21, 24], notes: "We can transform that value to another value" },
-{ lines: [27, 31], notes: "We can bind the value to a view's styles" },
-{ lines: [14], notes: "But we must manually start the animation" }
-]}
+  code={require("!raw-loader!./presentation/snippets/animated.js")}
+  theme={prismTheme}
+  title="Animated"
+  lang="javascript"
+  notes=""
+  showNumbers
+  steps={[
+    { tokens: {2: [8, 13]}, notes: "It's built into React Native" },
+    { lines: [6], notes: "We create an animated value container " },
+    { range: [21, 24], notes: "We can transform that value to another value" },
+    { lines: [27, 31], notes: "We can bind the value to a view's styles" },
+    { lines: [14], notes: "But we must manually start the animation" }
+  ]}
 />
 
 ---
@@ -108,19 +110,19 @@ steps={[
 ---
 
 <CodeSurfer
-title="PanResponder"
-notes=""
-code={require("!raw-loader!./presentation/snippets/panresponder.js")}
-lang="javascript"
-showNumbers
-dark={false}
-steps={[
-{ tokens: {2: [6, 11]}, notes: "It's built into React Native" },
-{ range: [9, 14], notes: "We can respond to gesture lifecycle events" },
-{ lines: [25], notes: "PanResponder is just a utility to generate gesture props, which we attach to a view"},
-{ lines: [6, 13], notes: "And bind the gesture state to an Animated value" },
-{ lines: [17, 18, 19, 20, 21, 24], notes: "The Animated value can then drive visual changes" },
-]}
+  code={require("!raw-loader!./presentation/snippets/panresponder.js")}
+  theme={prismTheme}
+  title="PanResponder"
+  lang="javascript"
+  notes=""
+  showNumbers
+  steps={[
+    { tokens: {2: [6, 11]}, notes: "It's built into React Native" },
+    { range: [9, 14], notes: "We can respond to gesture lifecycle events" },
+    { lines: [25], notes: "PanResponder is just a utility to generate gesture props, which we attach to a view"},
+    { lines: [6, 13], notes: "And bind the gesture state to an Animated value" },
+    { lines: [17, 18, 19, 20, 21, 24], notes: "The Animated value can then drive visual changes" },
+  ]}
 />
 
 ---
