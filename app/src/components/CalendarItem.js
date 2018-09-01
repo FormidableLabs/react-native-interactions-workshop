@@ -36,13 +36,25 @@ const Card = styled.View`
   padding: 4px;
 `;
 
-const Title = styled.Text`
+const Title = styled.Text.attrs({
+  allowFontScaling: false,
+  numberOfLines: p => p.expand ? 2 : 1,
+  ellipsizeMode: 'clip'
+})`
+  flex-grow: 0;
+  flex-shrink: 1;
   color: white;
   font-size: 12px;
   line-height: 15px;
 `;
 
-const Speaker = styled.Text`
+const Speaker = styled.Text.attrs({
+  allowFontScaling: false,
+  numberOfLines: 1,
+  ellipsizeMode: 'clip'
+})`
+  flex-grow: 0;
+  flex-shrink: 2;
   color: white;
   font-style: italic;
   font-size: 10px;
@@ -68,8 +80,8 @@ const AnimatedCard = ({ progress, height, item }) => {
 
   return (
     <Card style={{ height }} isTalk={item.isTalk}>
-      <Animated.View style={{ opacity }}>
-        <Title>{item.title}</Title>
+      <Animated.View style={{ flexDirection: 'column', alignItems: 'stretch', flex: 1, opacity }}>
+        <Title expand={!item.profile}>{item.title}</Title>
         {item.profile && <Speaker>{item.profile.name}</Speaker>}
       </Animated.View>
     </Card>
