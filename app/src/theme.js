@@ -28,6 +28,7 @@ export const colors = {
   text: '#191819',
   label: '#7c7284',
   stroke: '#d3cbd8',
+  strokeRgb: [211, 203, 216],
   card: '#e53d40',
   inactive: '#a7abb7'
 };

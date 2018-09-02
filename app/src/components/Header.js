@@ -68,7 +68,7 @@ const getFloatingPositions = (index, zoom) => {
       opacity: Animated.cond(isZooming, 1, opacity),
       transform: [
         { translateX: Animated.cond(isZooming, translateX) },
-        { translateY: Animated.cond(isZooming, translateY) }
+        /*{ translateY: Animated.cond(isZooming, translateY) }*/
       ]
     };
   });

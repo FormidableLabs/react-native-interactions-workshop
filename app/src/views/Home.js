@@ -15,13 +15,18 @@ import CalendarItemStack from '../components/CalendarItemStack';
  * Calendar view
  */
 class Home extends Component {
-  indexState = new Animated.Value(-1);
-  zoomState = new Animated.Value(0);
+  constructor(props) {
+    super(props);
+
+    this.indexState = new Animated.Value(-1);
+    this.zoomState = new Animated.Value(0);
+  }
 
   render() {
     const {
       navigation: { navigate }
     } = this.props;
+
     const headerLabels = data.map(x => x.label);
     const headerTitles = data.map(x => x.title);
 

@@ -20,48 +20,56 @@ const Scrollable = styled(ScrollView).attrs({
   width: 100%;
 `;
 
-const Sidebar = styled.View.attrs({
-  zIndex: 1
-})`
-  width: ${p => p.theme.calendar.SIDEBAR_WIDTH};
-  flex-direction: column;
-  align-items: stretch;
-  background-color: white;
-`;
-
 const Content = styled.View`
   width: ${p => p.theme.calendar.CONTAINER_WIDTH};
   flex-direction: row;
   align-items: stretch;
 `;
 
-class CalendarRow extends Component {
-  waitFor = createRef();
-  scrollView = createRef();
+const getBackgroundStyle = zoom => {
+  const opacity = Animated.interpolate(zoom, {
+    inputRange: [0, 0.5, 1],
+    outputRange: [0, 0, 1]
+  });
 
+  const scaleX = Animated.interpolate(zoom, {
+    inputRange: [0, 0.5, 1],
+    outputRange: [0.8, 0.8, 1]
+  });
+
+  return {
+    opacity,
+    transform: [{ scaleX }]
+  };
+};
+
+const getBorderStyle = zoom => {
+  const alpha = Animated.interpolate(zoom, {
+    inputRange: [0, 0.5, 1],
+    outputRange: [1, 1, 0]
+  });
+
+  const { strokeRgb } = theme.colors;
+  const borderRightColor = Animated.color(
+    strokeRgb[0],
+    strokeRgb[1],
+    strokeRgb[2],
+    alpha
+  );
+
+  return { borderRightColor };
+};
+
+class CalendarRow extends Component {
   constructor(props) {
     super(props);
 
     const zoomState = props.zoomState || new Animated.Value(0);
 
-    const opacity = Animated.interpolate(zoomState, {
-      inputRange: [0, 0.5, 1],
-      outputRange: [0, 0, 1]
-    });
-
-    const scaleX = Animated.interpolate(zoomState, {
-      inputRange: [0, 0.5, 1],
-      outputRange: [0.8, 0.8, 1]
-    });
-
-    this.bgStyle = {
-      opacity,
-      transform: [{ scaleX }]
-    };
-
-    this.borderStyle = {
-      opacity: Animated.sub(1, opacity)
-    };
+    this.bgStyle = getBackgroundStyle(zoomState);
+    this.borderStyle = getBorderStyle(zoomState);
+    this.waitFor = createRef();
+    this.scrollView = createRef();
   }
 
   render() {
@@ -82,10 +90,10 @@ class CalendarRow extends Component {
           }
         }}
       >
-        <Sidebar>
-          <Animated.View style={[styles.border, this.borderStyle]} />
+        <Animated.View style={[styles.sidebar, this.borderStyle]}>
           {sidebar}
-        </Sidebar>
+        </Animated.View>
+
         <Content>
           <Animated.View style={[styles.background, this.bgStyle]}>
             {backgroundRows}
@@ -114,12 +122,12 @@ const styles = {
     borderBottomWidth: theme.sizes.hairline,
     borderBottomColor: theme.colors.stroke
   },
-  border: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
+  sidebar: {
+    zIndex: 1,
+    width: theme.calendar.SIDEBAR_WIDTH,
+    flexDirection: 'row',
+    alignItems: 'stretch',
+    backgroundColor: 'white',
     borderRightWidth: theme.sizes.hairline,
     borderRightColor: theme.colors.stroke
   }
