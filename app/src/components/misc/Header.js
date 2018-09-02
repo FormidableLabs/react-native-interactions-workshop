@@ -3,8 +3,8 @@ import { Text } from 'react-native';
 import styled from 'styled-components/native';
 import Animated from 'react-native-reanimated';
 import { Constants } from 'expo';
-import * as theme from '../theme';
 
+import * as theme from '../../theme';
 const { CELL_NUM, CELL_WIDTH } = theme.calendar;
 
 const Outer = styled.SafeAreaView`

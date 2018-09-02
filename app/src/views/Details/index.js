@@ -1,55 +1,16 @@
 import React from 'react';
-import styled from 'styled-components/native';
 import { Transition } from 'react-navigation-fluid-transitions';
-import { Constants } from 'expo';
-import * as theme from '../theme';
-import BackButton from '../components/BackButton';
-import Container from '../components/Container';
 
-const { statusBarHeight } = Constants;
-
-const Scrollable = styled.ScrollView``;
-
-const Header = styled.View`
-  background-color: ${p =>
-    p.isTalk ? theme.colors.card : theme.colors.inactive};
-  padding: ${p => (p.isTalk ? 20 : statusBarHeight + 80)}px 10px 20px 10px;
-`;
-
-const HeaderContent = styled.View`
-  background-color: transparent;
-`;
-
-const Title = styled.Text`
-  color: white;
-  font-size: 16px;
-  font-weight: bold;
-  margin-bottom: 4px;
-`;
-
-const Photo = styled.Image`
-  width: 100%;
-  aspect-ratio: ${p => p.width / p.height};
-`;
-
-const Speaker = styled.Text`
-  color: white;
-  font-size: 12px;
-  font-style: italic;
-`;
-
-const Agenda = styled.Text`
-  font-size: 14px;
-  line-height: 18px;
-  padding: 20px 10px 40px 10px;
-`;
+import { BackButton, Container } from '../../components/misc';
+import { Scrollable, Photo, HeaderContent, Header, Title, Speaker, Agenda } from './styles';
 
 /**
  * Detail page for a single talk or other program event
  */
-const Event = ({ navigation }) => {
+const Details = ({ navigation }) => {
   const event = navigation.getParam('event', {});
   const photo = event.profile && event.profile.photo;
+
   return (
     <Container>
       <Scrollable>
@@ -79,4 +40,4 @@ const Event = ({ navigation }) => {
   );
 };
 
-export default Event;
+export default Details;

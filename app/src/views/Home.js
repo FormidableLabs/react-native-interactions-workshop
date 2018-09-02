@@ -4,16 +4,13 @@ import Animated from 'react-native-reanimated';
 import data from '../data';
 import * as theme from '../theme';
 
-import Container from '../components/Container';
-import Header from '../components/Header';
-import CalendarRow from '../components/CalendarRow';
+import { Container, Header } from '../components/misc';
+import EventItems from '../components/EventItems';
+import CalendarLayout from '../components/CalendarLayout';
 import CalendarColumns from '../components/CalendarColumns';
-import CalendarSidebar from '../components/CalendarSidebar';
-import CalendarItemStack from '../components/CalendarItemStack';
 
-/**
- * Calendar view
- */
+const initialScrollY = 8 * theme.calendar.HOUR_HEIGHT;
+
 class Home extends Component {
   constructor(props) {
     super(props);
@@ -27,22 +24,18 @@ class Home extends Component {
       navigation: { navigate }
     } = this.props;
 
-    const headerLabels = data.map(x => x.label);
-    const headerTitles = data.map(x => x.title);
-
     return (
       <Container>
         <Header
           indexState={this.indexState}
           zoomState={this.zoomState}
-          labels={headerLabels}
-          titles={headerTitles}
+          labels={data.map(x => x.label)}
+          titles={data.map(x => x.title)}
         />
 
-        <CalendarRow
-          sidebar={<CalendarSidebar />}
+        <CalendarLayout
           zoomState={this.zoomState}
-          initialScrollY={8 * theme.calendar.HOUR_HEIGHT}
+          initialScrollY={initialScrollY}
         >
           {({ gestureHandlerRef }) => (
             <CalendarColumns
@@ -50,10 +43,10 @@ class Home extends Component {
               zoomState={this.zoomState}
               gestureHandlerRef={gestureHandlerRef}
             >
-              {i => <CalendarItemStack data={data[i]} navigate={navigate} />}
+              {i => <EventItems data={data[i]} navigate={navigate} />}
             </CalendarColumns>
           )}
-        </CalendarRow>
+        </CalendarLayout>
       </Container>
     );
   }

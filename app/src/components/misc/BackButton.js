@@ -9,7 +9,7 @@ const Button = styled(BorderlessButton)`
 `;
 
 const Arrow = styled.Image.attrs({
-  source: require('../../assets/back.png')
+  source: require('../../../assets/back.png')
 })`
   width: 40px;
   height: 40px;

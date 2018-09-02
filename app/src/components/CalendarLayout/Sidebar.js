@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components/native';
 import { format, setHours, startOfDay } from 'date-fns';
 
-import * as theme from '../theme';
+import * as theme from '../../theme';
 const { HOUR_HEIGHT, SIDEBAR_OFFSET } = theme.calendar;
 
 const Wrapper = styled.View`
@@ -27,7 +27,7 @@ const Label = styled.Text`
 const LABEL_FORMAT = 'HH:mm';
 const start = startOfDay(new Date());
 
-const CalendarSidebar = () => (
+const Sidebar = () => (
   <Wrapper>
     {Array.from({ length: 24 }).map((_, i) => {
       const label = format(setHours(start, i), LABEL_FORMAT);
@@ -37,4 +37,4 @@ const CalendarSidebar = () => (
   </Wrapper>
 );
 
-export default CalendarSidebar;
+export default Sidebar;

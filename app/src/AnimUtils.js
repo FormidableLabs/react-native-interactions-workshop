@@ -1,8 +1,5 @@
 import Animated from 'react-native-reanimated';
 
-// Floor a value to lower, whole integer
-export const floor = a => Animated.round(Animated.sub(a, 0.5));
-
 // Limit a value to minimum and maximum bounds
 export const limit = (a, min, max) => Animated.min(max, Animated.max(min, a));
 

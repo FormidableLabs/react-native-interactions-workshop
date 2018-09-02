@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import styled from 'styled-components/native';
 import { getHours, getMinutes } from 'date-fns';
 
-import * as theme from '../theme';
-import CalendarItem from './CalendarItem';
+import * as theme from '../../theme';
+import Item from './Item';
 
 const { HOUR_HEIGHT } = theme.calendar;
 
@@ -13,12 +13,15 @@ const Wrapper = styled.View`
   align-items: stretch;
 `;
 
-class CalendarItemStack extends Component {
+class EventItems extends Component {
   render() {
     const { data, navigate } = this.props;
     const { items } = data;
+
     let y = 0;
 
+    // Calculate a _relative_ top distance from item to item,
+    // instead of using absolute
     const styles = items.map(item => {
       const hour = getHours(item.date) + getMinutes(item.date) / 60;
       const top = hour * HOUR_HEIGHT;
@@ -32,7 +35,7 @@ class CalendarItemStack extends Component {
     return (
       <Wrapper>
         {items.map((item, i) => (
-          <CalendarItem
+          <Item
             key={i}
             item={item}
             style={styles[i]}
@@ -48,4 +51,4 @@ class CalendarItemStack extends Component {
   }
 }
 
-export default CalendarItemStack;
+export default EventItems;

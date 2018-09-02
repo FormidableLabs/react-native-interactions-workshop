@@ -1,7 +1,6 @@
-// import { createStackNavigator as createNavigator } from 'react-navigation';
 import { FluidNavigator as createNavigator } from 'react-navigation-fluid-transitions';
 import Home from './Home';
-import Event from './Event';
+import Details from './Details';
 
 export default createNavigator(
   {
@@ -9,7 +8,7 @@ export default createNavigator(
       screen: Home
     },
     Event: {
-      screen: Event
+      screen: Details
     }
   },
   {

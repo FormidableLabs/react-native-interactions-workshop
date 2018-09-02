@@ -4,7 +4,8 @@ import { ScrollView } from 'react-native-gesture-handler';
 import Animated from 'react-native-reanimated';
 import styled from 'styled-components/native';
 
-import * as theme from '../theme';
+import * as theme from '../../theme';
+import Sidebar from './Sidebar';
 
 const { HOUR_HEIGHT, SIDEBAR_OFFSET } = theme.calendar;
 
@@ -62,7 +63,7 @@ const getBorderStyle = zoom => {
   return { borderRightColor };
 };
 
-class CalendarRow extends Component {
+class CalendarLayout extends Component {
   constructor(props) {
     super(props);
 
@@ -76,7 +77,7 @@ class CalendarRow extends Component {
 
   render() {
     const { waitFor } = this;
-    const { sidebar, children, initialScrollY } = this.props;
+    const { children, initialScrollY } = this.props;
     const renderProps = { gestureHandlerRef: waitFor };
     const scrollPosition = { x: 0, y: initialScrollY + SIDEBAR_OFFSET };
 
@@ -93,7 +94,7 @@ class CalendarRow extends Component {
         }}
       >
         <Animated.View style={[styles.sidebar, this.borderStyle]}>
-          {sidebar}
+          <Sidebar />
         </Animated.View>
 
         <Content>
@@ -139,4 +140,4 @@ const backgroundRows = Array.from({ length: 23 }).map((_, i) => (
   <View key={i} style={styles.row} />
 ));
 
-export default CalendarRow;
+export default CalendarLayout;
