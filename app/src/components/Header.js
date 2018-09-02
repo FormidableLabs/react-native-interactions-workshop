@@ -15,7 +15,9 @@ const Outer = styled.SafeAreaView`
   padding-top: ${Constants.statusBarHeight};
 `;
 
-const Inner = styled.View`
+const Inner = styled.View.attrs({
+  collapsable: false
+})`
   height: 80px;
   padding-left: ${p => p.theme.calendar.SIDEBAR_WIDTH}px;
 
@@ -24,7 +26,9 @@ const Inner = styled.View`
   align-items: stretch;
 `;
 
-const TitleRow = styled.View`
+const TitleRow = styled.View.attrs({
+  collapsable: false
+})`
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
@@ -37,7 +41,9 @@ const Title = styled.Text`
   color: ${p => p.theme.colors.text};
 `;
 
-const Row = styled.View`
+const Row = styled.View.attrs({
+  collapsable: false
+})`
   flex-direction: row;
   align-items: stretch;
 `;
@@ -68,7 +74,7 @@ const getFloatingPositions = (index, zoom) => {
       opacity: Animated.cond(isZooming, 1, opacity),
       transform: [
         { translateX: Animated.cond(isZooming, translateX) },
-        /*{ translateY: Animated.cond(isZooming, translateY) }*/
+        { translateY: Animated.cond(isZooming, translateY) }
       ]
     };
   });

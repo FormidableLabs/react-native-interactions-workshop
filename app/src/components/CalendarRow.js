@@ -20,7 +20,9 @@ const Scrollable = styled(ScrollView).attrs({
   width: 100%;
 `;
 
-const Content = styled.View`
+const Content = styled.View.attrs({
+  collapsable: false
+})`
   width: ${p => p.theme.calendar.CONTAINER_WIDTH};
   flex-direction: row;
   align-items: stretch;
