@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Text, View, SafeAreaView } from 'react-native';
 import styled from 'styled-components/native';
 import Animated from 'react-native-reanimated';
-
+import { Constants } from 'expo';
 import * as AnimUtils from '../AnimUtils';
 import * as theme from '../theme';
 
@@ -13,6 +13,7 @@ const Outer = styled.SafeAreaView`
   background: ${p => p.theme.colors.header};
   border-bottom-width: 1px;
   border-bottom-color: ${p => p.theme.colors.stroke};
+  padding-top: ${Constants.statusBarHeight};
 `;
 
 const Inner = styled.View`

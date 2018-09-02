@@ -1,16 +1,19 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import { Transition } from 'react-navigation-fluid-transitions';
+import { Constants } from 'expo';
 import * as theme from '../theme';
 import BackButton from '../components/BackButton';
 import Container from '../components/Container';
+
+const { statusBarHeight } = Constants;
 
 const Scrollable = styled.ScrollView``;
 
 const Header = styled.View`
   background-color: ${p =>
     p.isTalk ? theme.colors.card : theme.colors.inactive};
-  padding: 20px 10px 20px 10px;
+  padding: ${p => (p.isTalk ? 20 : statusBarHeight + 80)}px 10px 20px 10px;
 `;
 
 const HeaderContent = styled.View`
@@ -62,7 +65,7 @@ const Event = ({ navigation }) => {
             <Transition appear="left">
               <HeaderContent>
                 <Title>{event.title}</Title>
-                <Speaker>{event.speaker}</Speaker>
+                {event.speaker ? <Speaker>{event.speaker}</Speaker> : null}
               </HeaderContent>
             </Transition>
           </Header>
