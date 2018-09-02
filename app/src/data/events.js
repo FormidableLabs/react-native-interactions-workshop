@@ -93,7 +93,7 @@ const data = [
     company: 'YLD',
     title: 'GQL all the Things!',
     agenda:
-      "\n                Let's take a look at look at what we can do with React Apollo today, how we can use it to even manage our local state and see what the future holds for us in the new releases of React Apollo.\n              "
+      '\n                Let\'s take a look at look at what we can do with React Apollo today, how we can use it to even manage our local state and see what the future holds for us in the new releases of React Apollo.\n              '
   },
   {
     day: 5,
@@ -133,7 +133,7 @@ const data = [
     title:
       'Wrangling Your Workflow - Taking Charge of React Native Deployments',
     agenda:
-      "How to hang a painting on the wall with React Native\n                  So you want to buy a painting, but not sure which one. Or where to place it? we have a solution. Just use your phone for this.\n                  Augmented reality becomes more popular in recent years. Companies like Apple or Google invests tons of money to develop AR support. Smartphones became powerful enough to deal with all these new features. And it'll be ridiculous not to use all this power when looking for the best place to put a piece of art.\n                  In this talk we'll be looking at ARKit from Apple and the ways how we can use it with React Native. We'll be building a simple app to hang paintings on the wall and learning how to deal with newest AR technologies."
+      'How to hang a painting on the wall with React Native\n                  So you want to buy a painting, but not sure which one. Or where to place it? we have a solution. Just use your phone for this.\n                  Augmented reality becomes more popular in recent years. Companies like Apple or Google invests tons of money to develop AR support. Smartphones became powerful enough to deal with all these new features. And it\'ll be ridiculous not to use all this power when looking for the best place to put a piece of art.\n                  In this talk we\'ll be looking at ARKit from Apple and the ways how we can use it with React Native. We\'ll be building a simple app to hang paintings on the wall and learning how to deal with newest AR technologies.'
   },
   {
     day: 5,
@@ -143,7 +143,7 @@ const data = [
     company: 'NOZBE',
     title: 'Next-generation React databases',
     agenda:
-      "\n                How do you manage user data in your React Native app? A popular approach is to use Redux or MobX with a persistence adapter. This works great for small, simple apps, but it has a serious flaw: it doesn't scale very well.\n                Introducing WatermelonDB — a next generation database for React and React Native. Here's why you should care: <br>\n                - Highly scalable. Works as well for 20,000 database records as it does for 100.\n                Instant launch. No matter how much data you have, the app still launches with near-zero performance penalty <br>\n                - Lazy loaded everything. Don't load all data at launch, query only the exact records you need. That's why it's fast! <br>\n                - Fully reactive. All records and queries are observable using RxJS. A change in one place propagates to all other places automatically <br>\n                - Made for React. Comes with a HOC so you can declaratively tie together data and components <br>\n                - Relational. Document stores are simple, but relational databases are powerful. Want to find, say, all posts that have a comment by user X? Sure, that'll be about a millisecond. <br>\n                - Cross-platform. Works on iOS and Android (using SQLite), on the web (using LokiJS), and it's easy to add more <br>\n                - Performant. Uses asynchronous processing, multi-threading (also on the web), resource sharing, and caching to squeeze extra performance <br>\n                - Built for sync. Comes with syncing primitives so you can supply your own synchronization code <br>\n              "
+      '\n                How do you manage user data in your React Native app? A popular approach is to use Redux or MobX with a persistence adapter. This works great for small, simple apps, but it has a serious flaw: it doesn\'t scale very well.\n                Introducing WatermelonDB — a next generation database for React and React Native. Here\'s why you should care: <br>\n                - Highly scalable. Works as well for 20,000 database records as it does for 100.\n                Instant launch. No matter how much data you have, the app still launches with near-zero performance penalty <br>\n                - Lazy loaded everything. Don\'t load all data at launch, query only the exact records you need. That\'s why it\'s fast! <br>\n                - Fully reactive. All records and queries are observable using RxJS. A change in one place propagates to all other places automatically <br>\n                - Made for React. Comes with a HOC so you can declaratively tie together data and components <br>\n                - Relational. Document stores are simple, but relational databases are powerful. Want to find, say, all posts that have a comment by user X? Sure, that\'ll be about a millisecond. <br>\n                - Cross-platform. Works on iOS and Android (using SQLite), on the web (using LokiJS), and it\'s easy to add more <br>\n                - Performant. Uses asynchronous processing, multi-threading (also on the web), resource sharing, and caching to squeeze extra performance <br>\n                - Built for sync. Comes with syncing primitives so you can supply your own synchronization code <br>\n              '
   },
   {
     day: 5,
@@ -199,7 +199,7 @@ const data = [
     company: 'INFINITE RED',
     title: 'Taming The Machine',
     agenda:
-      "\n                Machine Learning is a buzzword, because big companies love it.  Big companies love it, because it's insanely cool.   Join me as we cover the breath-taking aspects of Machine Learning (ML) and dive deep into how it's currently showing up in mobile; especially React Native.  We'll touch the tip of the iceberg and spark ML creativity for everyone!\n              "
+      '\n                Machine Learning is a buzzword, because big companies love it.  Big companies love it, because it\'s insanely cool.   Join me as we cover the breath-taking aspects of Machine Learning (ML) and dive deep into how it\'s currently showing up in mobile; especially React Native.  We\'ll touch the tip of the iceberg and spark ML creativity for everyone!\n              '
   },
   {
     day: 6,
@@ -219,7 +219,7 @@ const data = [
     company: 'FACEBOOK',
     title: 'Building JavaScript bundles for React Native',
     agenda:
-      "\n                React Native uses Metro for building the JavaScript code that runs on the devices, both during development and production.<br>\n                In this talk you'll learn the main concepts about bundling JavaScript code (both for web applications and React Native) and the architecture of Metro, which is focused around build speed.\n              "
+      '\n                React Native uses Metro for building the JavaScript code that runs on the devices, both during development and production.<br>\n                In this talk you\'ll learn the main concepts about bundling JavaScript code (both for web applications and React Native) and the architecture of Metro, which is focused around build speed.\n              '
   },
   {
     day: 6,

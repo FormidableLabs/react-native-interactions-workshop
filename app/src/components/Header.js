@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import { Text, View, SafeAreaView } from 'react-native';
+import { Text } from 'react-native';
 import styled from 'styled-components/native';
 import Animated from 'react-native-reanimated';
 import { Constants } from 'expo';
-import * as AnimUtils from '../AnimUtils';
 import * as theme from '../theme';
 
-const { CELL_NUM, SIDEBAR_WIDTH, CONTAINER_WIDTH, CELL_WIDTH } = theme.calendar;
+const { CELL_NUM, CELL_WIDTH } = theme.calendar;
 
 const Outer = styled.SafeAreaView`
   flex-shrink: 0;

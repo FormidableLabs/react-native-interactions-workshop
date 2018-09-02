@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import { Animated } from 'react-native';
-import { Transition } from 'react-navigation-fluid-transitions';
 
 const Title = styled(Animated.Text)`
   color: white;
@@ -17,9 +16,7 @@ const CalendarTitle = ({ tweenState, title }) => {
       })
     : 1;
 
-  return (
-    <Title style={{ opacity }}>{title}</Title>
-  );
+  return <Title style={{ opacity }}>{title}</Title>;
 };
 
 export default CalendarTitle;

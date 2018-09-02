@@ -91,7 +91,7 @@ export default [
     },
     name: 'Samuli Hakoniemi',
     bio:
-      "Samuli is a long time entrepreneur who's in deep love with React Native. He works mostly with start-ups and also keeps himself\n                  busy by organising events in Finland.",
+      'Samuli is a long time entrepreneur who\'s in deep love with React Native. He works mostly with start-ups and also keeps himself\n                  busy by organising events in Finland.',
     company: 'Punos Mobile'
   },
   {
@@ -200,7 +200,7 @@ export default [
     },
     name: 'Wouter van den Broek',
     bio:
-      "Mobile developer for more than 15 years, moving from SMS, I-mode, Symbian to iOS, Android and now React Native. Coming from web development (both front and backend) which made me appreciate React Native even more. Building apps for over 10 years with always special needs as high interest, that’s why I landed in the world of eHealth and mHealth. Making apps for patients and caregivers to create that 'dent in the universe' for them.",
+      'Mobile developer for more than 15 years, moving from SMS, I-mode, Symbian to iOS, Android and now React Native. Coming from web development (both front and backend) which made me appreciate React Native even more. Building apps for over 10 years with always special needs as high interest, that’s why I landed in the world of eHealth and mHealth. Making apps for patients and caregivers to create that \'dent in the universe\' for them.',
     company: 'Synappz Mobile Health'
   },
   {
@@ -211,7 +211,7 @@ export default [
     },
     name: 'Radek Pietruszewski',
     bio:
-      "Software writer, proud generalist, senior skeptic. Leads iOS and Mac development at Nozbe. His background is in native development\n                  for Apple platforms, but for the past two years he's been working on next-generation apps built with\n                  React Native. You can follow Radek at @radexp and his blog on radex.io",
+      'Software writer, proud generalist, senior skeptic. Leads iOS and Mac development at Nozbe. His background is in native development\n                  for Apple platforms, but for the past two years he\'s been working on next-generation apps built with\n                  React Native. You can follow Radek at @radexp and his blog on radex.io',
     company: 'Nozbe'
   },
   {

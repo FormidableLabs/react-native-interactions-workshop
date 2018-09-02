@@ -80,9 +80,7 @@ const data = Array.from({ length: CELL_NUM }).map((_, i) => {
     'MMM YYYY'
   )}`;
 
-  const items = normalisedEvents.filter(event => {
-    return isSameDay(date, event.date);
-  });
+  const items = normalisedEvents.filter(event => isSameDay(date, event.date));
 
   return {
     date,

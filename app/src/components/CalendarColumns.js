@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Dimensions } from 'react-native';
 import { PinchGestureHandler, State } from 'react-native-gesture-handler';
 import Animated from 'react-native-reanimated';
 
@@ -8,7 +7,6 @@ import * as theme from '../theme';
 
 const {
   CELL_NUM,
-  SIDEBAR_WIDTH,
   CONTAINER_WIDTH,
   CELL_WIDTH,
   PINCH_MAGNITUDE

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import styled from 'styled-components/native';
-import Animated from 'react-native-reanimated';
 import { getHours, getMinutes } from 'date-fns';
 
 import * as theme from '../theme';

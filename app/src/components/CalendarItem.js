@@ -1,19 +1,15 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import { Animated, Platform } from 'react-native';
-import { getHours, getMinutes } from 'date-fns';
 import { RectButton } from 'react-native-gesture-handler';
 import { Transition } from 'react-navigation-fluid-transitions';
 
 import * as theme from '../theme';
-import CalendarTitle from './CalendarTitle';
 
 const ellipsizeMode = Platform.select({
   ios: 'clip',
   android: 'tail'
 });
-
-const { HOUR_HEIGHT } = theme.calendar;
 
 const Wrapper = styled.View`
   flex-direction: column;
@@ -66,15 +62,6 @@ const Speaker = styled.Text.attrs({
   font-size: 10px;
   line-height: 15px;
 `;
-
-const disappear = ({ progress, start, end }) => {
-  const opacity = progress.interpolate({
-    inputRange: [start, start, end],
-    outputRange: [1, 1, 0]
-  });
-
-  return { opacity };
-};
 
 const AnimatedCard = ({ progress, height, item }) => {
   const opacity = progress
