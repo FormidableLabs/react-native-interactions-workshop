@@ -1,13 +1,14 @@
 import React, { Component, createRef } from 'react';
-import { View } from 'react-native';
+import { View, Platform } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import Animated from 'react-native-reanimated';
 import styled from 'styled-components/native';
 
 import * as theme from '../theme';
-const { HOUR_HEIGHT } = theme.calendar;
 
-const Wrapper = styled(ScrollView).attrs({
+const { HOUR_HEIGHT, SIDEBAR_OFFSET } = theme.calendar;
+
+const Scrollable = styled(ScrollView).attrs({
   bounces: false,
   contentContainerStyle: {
     flexDirection: 'row',
@@ -36,6 +37,7 @@ const Content = styled.View`
 
 class CalendarRow extends Component {
   waitFor = createRef();
+  scrollView = createRef();
 
   constructor(props) {
     super(props);
@@ -64,11 +66,22 @@ class CalendarRow extends Component {
 
   render() {
     const { waitFor } = this;
-    const { sidebar, children } = this.props;
+    const { sidebar, children, initialScrollY } = this.props;
     const renderProps = { gestureHandlerRef: waitFor };
+    const scrollPosition = { x: 0, y: initialScrollY + SIDEBAR_OFFSET };
 
     return (
-      <Wrapper waitFor={theme.isAndroid ? waitFor : undefined}>
+      <Scrollable
+        innerRef={this.scrollView}
+        waitFor={theme.isAndroid ? waitFor : undefined}
+        contentOffset={scrollPosition}
+        onContentSizeChange={() => {
+          // contentOffset not supported on Android
+          if (Platform.OS === 'android' && this.scrollView.current) {
+            this.scrollView.current.scrollTo(scrollPosition);
+          }
+        }}
+      >
         <Sidebar>
           <Animated.View style={[styles.border, this.borderStyle]} />
           {sidebar}
@@ -80,7 +93,7 @@ class CalendarRow extends Component {
 
           {children(renderProps)}
         </Content>
-      </Wrapper>
+      </Scrollable>
     );
   }
 }
@@ -110,7 +123,7 @@ const styles = {
     borderRightWidth: theme.sizes.hairline,
     borderRightColor: theme.colors.stroke
   }
-}
+};
 
 const backgroundRows = Array.from({ length: 23 }).map((_, i) => (
   <View key={i} style={styles.row} />

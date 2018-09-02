@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Animated from 'react-native-reanimated';
 
 import data from '../data';
+import * as theme from '../theme';
 
 import Container from '../components/Container';
 import Header from '../components/Header';
@@ -33,7 +34,11 @@ class Home extends Component {
           titles={headerTitles}
         />
 
-        <CalendarRow sidebar={<CalendarSidebar />} zoomState={this.zoomState}>
+        <CalendarRow
+          sidebar={<CalendarSidebar />}
+          zoomState={this.zoomState}
+          initialScrollY={8 * theme.calendar.HOUR_HEIGHT}
+        >
           {({ gestureHandlerRef }) => (
             <CalendarColumns
               indexState={this.indexState}

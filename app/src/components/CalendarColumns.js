@@ -65,10 +65,10 @@ const getZoomWithPinch = ({ zoom, isPinchActive, pinchScale }) => {
   const prevZoomState = new Animated.Value(0);
 
   const pinchZoom = applyZoomLimit(
-    Animated.add(prevZoomState, Animated.multiply(
-      PINCH_MAGNITUDE,
-      Animated.sub(pinchScale, 1)
-    ))
+    Animated.add(
+      prevZoomState,
+      Animated.multiply(PINCH_MAGNITUDE, Animated.sub(pinchScale, 1))
+    )
   );
 
   return Animated.cond(

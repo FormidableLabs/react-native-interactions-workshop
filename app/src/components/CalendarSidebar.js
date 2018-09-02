@@ -3,12 +3,12 @@ import styled from 'styled-components/native';
 import { format, setHours, startOfDay } from 'date-fns';
 
 import * as theme from '../theme';
-const { HOUR_HEIGHT } = theme.calendar;
+const { HOUR_HEIGHT, SIDEBAR_OFFSET } = theme.calendar;
 
 const Wrapper = styled.View`
   flex-direction: column;
   align-items: stretch;
-  top: -8px;
+  top: ${SIDEBAR_OFFSET}px;
 `;
 
 const Row = styled.View`
@@ -32,11 +32,7 @@ const CalendarSidebar = () => (
     {Array.from({ length: 24 }).map((_, i) => {
       const label = format(setHours(start, i), LABEL_FORMAT);
 
-      return (
-        <Row key={label}>
-          {i > 0 && <Label>{label}</Label>}
-        </Row>
-      );
+      return <Row key={label}>{i > 0 && <Label>{label}</Label>}</Row>;
     })}
   </Wrapper>
 );

@@ -8,6 +8,7 @@ const CONTAINER_WIDTH = viewport.width - SIDEBAR_WIDTH;
 const CELL_WIDTH = CONTAINER_WIDTH / CELL_NUM;
 const HOUR_HEIGHT = CELL_WIDTH * 2;
 const PINCH_MAGNITUDE = 0.5;
+const SIDEBAR_OFFSET = -8;
 
 export const isAndroid = Platform.OS === 'android';
 export const isIOS = Platform.OS === 'ios';
@@ -18,6 +19,7 @@ export const calendar = {
   CONTAINER_WIDTH,
   CELL_WIDTH,
   HOUR_HEIGHT,
+  SIDEBAR_OFFSET,
   PINCH_MAGNITUDE
 };
 
