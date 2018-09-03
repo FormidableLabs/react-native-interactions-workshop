@@ -84,19 +84,19 @@ https://rneu-interactions.netlify.com
 ---
 
 <CodeSurfer
-  code={require("!raw-loader!./presentation/snippets/animated.js")}
-  theme={prismTheme}
-  title="Animated"
-  lang="javascript"
-  notes=""
-  showNumbers
-  steps={[
-    { tokens: {2: [8, 13]}, notes: "It's built into React Native" },
-    { lines: [6], notes: "We create an animated value container " },
-    { range: [21, 24], notes: "We can transform that value to another value" },
-    { lines: [27, 31], notes: "We can bind the value to a view's styles" },
-    { lines: [14], notes: "But we must manually start the animation" }
-  ]}
+code={require("!raw-loader!./presentation/snippets/animated.js")}
+theme={prismTheme}
+title="Animated"
+lang="javascript"
+notes=""
+showNumbers
+steps={[
+{ tokens: {2: [8, 13]}, notes: "It's built into React Native" },
+{ lines: [6], notes: "We create an animated value container " },
+{ range: [21, 24], notes: "We can transform that value to another value" },
+{ lines: [27, 31], notes: "We can bind the value to a view's styles" },
+{ lines: [14], notes: "But we must manually start the animation" }
+]}
 />
 
 ---
@@ -110,19 +110,19 @@ https://rneu-interactions.netlify.com
 ---
 
 <CodeSurfer
-  code={require("!raw-loader!./presentation/snippets/panresponder.js")}
-  theme={prismTheme}
-  title="PanResponder"
-  lang="javascript"
-  notes=""
-  showNumbers
-  steps={[
-    { tokens: {2: [6, 11]}, notes: "It's built into React Native" },
-    { range: [9, 14], notes: "We can respond to gesture lifecycle events" },
-    { lines: [25], notes: "PanResponder is just a utility to generate gesture props, which we attach to a view"},
-    { lines: [6, 13], notes: "And bind the gesture state to an Animated value" },
-    { lines: [17, 18, 19, 20, 21, 24], notes: "The Animated value can then drive visual changes" },
-  ]}
+code={require("!raw-loader!./presentation/snippets/panresponder.js")}
+theme={prismTheme}
+title="PanResponder"
+lang="javascript"
+notes=""
+showNumbers
+steps={[
+{ tokens: {2: [6, 11]}, notes: "It's built into React Native" },
+{ range: [9, 14], notes: "We can respond to gesture lifecycle events" },
+{ lines: [25], notes: "PanResponder is just a utility to generate gesture props, which we attach to a view"},
+{ lines: [6, 13], notes: "And bind the gesture state to an Animated value" },
+{ lines: [17, 18, 19, 20, 21, 24], notes: "The Animated value can then drive visual changes" },
+]}
 />
 
 ---
@@ -142,3 +142,45 @@ https://rneu-interactions.netlify.com
 - Animated ➡️ Reanimated
 - PanResponder ➡️ GestureHandler
 - React Navigation Transitioners
+
+---
+
+## Reanimated
+
+- `Animated` implemented completely from scratch
+- Fully declarative (no more `.start()`!)
+- Runs on the native UI thread (no more `useNativeDriver`)
+- Built into Expo\*
+
+---
+
+## Reanimated Confetti
+
+Insert URL here
+
+---
+
+## React Native Gesture Handler
+
+- Declarative components (e.g. `PanGestureHandler`, `PinchGestureHandler`)
+- Can be nested and composed!
+- Also built into Expo
+- Stable, version 1.0 this summer
+
+---
+
+<CodeSurfer
+code={require("!raw-loader!./presentation/snippets/gesturehandler.js")}
+theme={prismTheme}
+title="Gesture Handler"
+lang="javascript"
+notes=""
+showNumbers
+steps={[
+{ range: [1, 4], notes: "A separate library (with native dependencies)" },
+{ lines: [13, 20], notes: "Provides different gesture handler primitives" },
+{ lines: [10, 11, 15, 22], notes: "We can ensure that gestures don't conflict with each other"},
+{ lines: [16, 17], notes: "We can be notified of gesture events" },
+{ lines: [23, 24, 25], notes: "Or bind them to (Re)Animated native event handlers" },
+]}
+/>
