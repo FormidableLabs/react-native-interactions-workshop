@@ -20,12 +20,21 @@ const getZoomWithPinch = pinchScale => applyZoomLimit(
   Animated.multiply(PINCH_MAGNITUDE, Animated.sub(pinchScale, 1))
 );
 
-const getColumnWidths = zoom => {
+const getFocalIndex = focalX =>
+  Animated.floor(Animated.divide(focalX, CELL_WIDTH));
+
+const getColumnWidths = (index, zoom) => {
   const arr = Array.from({ length: CELL_NUM });
 
-  return arr.map(() => {
+  return arr.map((_, i) => {
+    const isZoomed = Animated.eq(index, i);
+
     const width = Animated.add(
-      Animated.multiply(CONTAINER_WIDTH - CELL_WIDTH, zoom),
+      Animated.cond(
+        isZoomed,
+        Animated.multiply(CONTAINER_WIDTH - CELL_WIDTH, zoom),
+        0
+      ),
       CELL_WIDTH
     );
 
@@ -38,18 +47,27 @@ class CalendarColumns extends Component {
     super(props);
 
     // The current column that is being zoomed (none is -1)
-    //const indexState = props.indexState || new Animated.Value(-1);
+    const indexState = props.indexState || new Animated.Value(-1);
     // The current zoom state, where 0 is closed and 1 is opened
-    //const zoomState = props.zoomState || new Animated.Value(0);
+    const zoomState = props.zoomState || new Animated.Value(0);
 
+    // More state for pinch
     const pinchScale = new Animated.Value(1);
     const pinchFocalX = new Animated.Value(0);
     const pinchVelocity = new Animated.Value(0);
 
-    const zoom = getZoomWithPinch(pinchScale);
+    const isClosed = Animated.eq(zoomState, 0);
+
+    const index = Animated.cond(
+      isClosed,
+      Animated.set(indexState, getFocalIndex(pinchFocalX)),
+      indexState
+    );
+
+    const zoom = Animated.set(zoomState, getZoomWithPinch(pinchScale));
 
     this.containerStyle = {};
-    this.columnStyles = getColumnWidths(zoom);
+    this.columnStyles = getColumnWidths(index, zoom);
 
     this.onPinchEvent = Animated.event([
       {
