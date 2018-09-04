@@ -36,6 +36,13 @@ const getZoomWithPinch = ({ zoom, isPinchActive, pinchScale }) => {
 const getFocalIndex = focalX =>
   Animated.floor(Animated.divide(focalX, CELL_WIDTH));
 
+const getOffsetX = (index, zoom) =>
+  Animated.cond(
+    Animated.neq(index, -1),
+    Animated.multiply(-1, index, zoom, CELL_WIDTH),
+    0
+  );
+
 const getColumnWidths = (index, zoom) => {
   const arr = Array.from({ length: CELL_NUM });
 
@@ -86,7 +93,14 @@ class CalendarColumns extends Component {
       pinchScale
     });
 
-    this.containerStyle = {};
+    this.containerStyle = {
+      transform: [
+        {
+          translateX: getOffsetX(index, zoom)
+        }
+      ]
+    };
+
     this.columnStyles = getColumnWidths(index, zoom);
 
     this.onPinchEvent = Animated.event([
