@@ -33,6 +33,16 @@ const getZoomWithPinch = ({ zoom, isPinchActive, pinchScale }) => {
   );
 };
 
+const getZoomWithSnapPoints = ({ zoomClock, zoom, isPinchEnd, isAtSnapPoint, pinchVelocity }) => {
+  const shouldStart = Animated.and(isPinchEnd, Animated.not(isAtSnapPoint));
+
+  return Animated.cond(
+    shouldStart,
+    AnimUtils.runSpring(zoomClock, zoom, pinchVelocity),
+    zoom
+  );
+};
+
 const getFocalIndex = focalX =>
   Animated.floor(Animated.divide(focalX, CELL_WIDTH));
 
@@ -70,6 +80,8 @@ class CalendarColumns extends Component {
     const indexState = props.indexState || new Animated.Value(-1);
     // The current zoom state, where 0 is closed and 1 is opened
     const zoomState = props.zoomState || new Animated.Value(0);
+    // The current snap point animation clock
+    const zoomClock = new Animated.Clock();
 
     // More state for pinch
     const pinchScale = new Animated.Value(1);
@@ -78,8 +90,11 @@ class CalendarColumns extends Component {
     const pinchState = new Animated.Value(State.UNDETERMINED);
 
     const isClosed = Animated.eq(zoomState, 0);
+    const isOpen = Animated.eq(zoomState, 1);
+    const isAtSnapPoint = Animated.or(isClosed, isOpen);
 
     const isPinchActive = Animated.eq(pinchState, State.ACTIVE);
+    const isPinchEnd = Animated.eq(pinchState, State.END);
 
     const index = Animated.cond(
       Animated.and(isPinchActive, isClosed),
@@ -87,11 +102,21 @@ class CalendarColumns extends Component {
       indexState
     );
 
-    const zoom = getZoomWithPinch({
+    const zoomWithPinch = getZoomWithPinch({
       zoom: zoomState,
       isPinchActive,
       pinchScale
     });
+
+    const zoomWithSnap = getZoomWithSnapPoints({
+      zoom: zoomWithPinch,
+      zoomClock,
+      isPinchEnd,
+      isAtSnapPoint,
+      pinchVelocity
+    });
+
+    const zoom = Animated.set(zoomState, zoomWithSnap);
 
     this.containerStyle = {
       transform: [
