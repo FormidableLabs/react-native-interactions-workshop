@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
-import Animated from 'react-native-reanimated';
 // import { PinchGestureHandler, State } from 'react-native-gesture-handler';
+// import Animated from 'react-native-reanimated';
 
 // import * as AnimUtils from '../AnimUtils';
 import * as theme from '../theme';

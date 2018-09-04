@@ -30,26 +30,6 @@
 
 const data = [
   {
-    day: 3,
-    time: '21:30',
-    date: '2018-09-03 21:30',
-    speaker: '',
-    company: '',
-    title: 'Finish this workshop',
-    agenda: 'Yeah, so real talk... This was a tight squeeze. But we hope you are enjoying this workshop anyway right now.',
-    duration: 2
-  },
-  {
-    day: 4,
-    time: '08:30',
-    date: '2018-09-04 08:30',
-    speaker: '',
-    company: '',
-    title: 'RN Interactions Workshop',
-    agenda: 'Seriously? Why are you reading this? You\'re probably here right now. Get back to work please. We have interactions to implement.',
-    duration: 4
-  },
-  {
     day: 5,
     time: '08:30',
     date: '2018-09-05 08:30',
