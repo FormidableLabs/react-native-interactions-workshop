@@ -28,7 +28,7 @@ const getZoomWithPinch = ({ zoom, isPinchActive, pinchScale }) => {
 
   return Animated.cond(
     isPinchActive,
-    Animated.set(zoom, pinchZoom),
+    pinchZoom,
     Animated.set(prevZoomState, zoom)
   );
 };
