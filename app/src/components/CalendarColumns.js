@@ -116,7 +116,15 @@ class CalendarColumns extends Component {
       pinchVelocity
     });
 
-    const zoom = Animated.set(zoomState, zoomWithSnap);
+    const pinchInterruptsClock = Animated.cond(
+      Animated.and(isPinchActive, Animated.clockRunning(zoomClock)),
+      Animated.stopClock(zoomClock)
+    );
+
+    const zoom = Animated.block([
+      pinchInterruptsClock,
+      Animated.set(zoomState, zoomWithSnap)
+    ]);
 
     this.containerStyle = {
       transform: [
