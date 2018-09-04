@@ -16,9 +16,22 @@ const {
 // Constrain value to [0, 1]
 const applyZoomLimit = a => AnimUtils.limit(a, 0, 1);
 
-const getZoomWithPinch = pinchScale => applyZoomLimit(
-  Animated.multiply(PINCH_MAGNITUDE, Animated.sub(pinchScale, 1))
-);
+const getZoomWithPinch = ({ zoom, isPinchActive, pinchScale }) => {
+  const prevZoomState = new Animated.Value(0);
+
+  const pinchZoom = applyZoomLimit(
+    Animated.add(
+      prevZoomState,
+      Animated.multiply(PINCH_MAGNITUDE, Animated.sub(pinchScale, 1))
+    )
+  );
+
+  return Animated.cond(
+    isPinchActive,
+    Animated.set(zoom, pinchZoom),
+    Animated.set(prevZoomState, zoom)
+  );
+};
 
 const getFocalIndex = focalX =>
   Animated.floor(Animated.divide(focalX, CELL_WIDTH));
@@ -55,16 +68,23 @@ class CalendarColumns extends Component {
     const pinchScale = new Animated.Value(1);
     const pinchFocalX = new Animated.Value(0);
     const pinchVelocity = new Animated.Value(0);
+    const pinchState = new Animated.Value(State.UNDETERMINED);
 
     const isClosed = Animated.eq(zoomState, 0);
 
+    const isPinchActive = Animated.eq(pinchState, State.ACTIVE);
+
     const index = Animated.cond(
-      isClosed,
+      Animated.and(isPinchActive, isClosed),
       Animated.set(indexState, getFocalIndex(pinchFocalX)),
       indexState
     );
 
-    const zoom = Animated.set(zoomState, getZoomWithPinch(pinchScale));
+    const zoom = getZoomWithPinch({
+      zoom: zoomState,
+      isPinchActive,
+      pinchScale
+    });
 
     this.containerStyle = {};
     this.columnStyles = getColumnWidths(index, zoom);
@@ -72,6 +92,7 @@ class CalendarColumns extends Component {
     this.onPinchEvent = Animated.event([
       {
         nativeEvent: {
+          state: pinchState,
           scale: pinchScale,
           velocity: pinchVelocity,
           focalX: pinchFocalX
@@ -84,7 +105,11 @@ class CalendarColumns extends Component {
     const { gestureHandlerRef, children } = this.props;
 
     return (
-      <PinchGestureHandler ref={gestureHandlerRef} onGestureEvent={this.onPinchEvent}>
+      <PinchGestureHandler
+        ref={gestureHandlerRef}
+        onGestureEvent={this.onPinchEvent}
+        onHandlerStateChange={this.onPinchEvent}
+      >
         <Animated.View style={[styles.container, this.containerStyle]}>
           {this.columnStyles.map((style, index) => (
             <Animated.View style={[styles.column, style]} key={index}>
