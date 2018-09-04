@@ -9,6 +9,14 @@ export { default as theme } from './presentation/theme';
 
 ---
 
+## @jevakallio
+
+## @\_philpl
+
+[Formidable](https://formidable.com) // London
+
+---
+
 ## Workshop materials
 
 http://tiny.cc/rneu-interactions
@@ -141,7 +149,7 @@ steps={[
 
 - Animated ➡️ Reanimated
 - PanResponder ➡️ GestureHandler
-- React Navigation Transitioners
+- React Navigation Navigators
 
 ---
 
@@ -184,3 +192,67 @@ steps={[
 { lines: [23, 24, 25], notes: "Or bind them to (Re)Animated native event handlers" },
 ]}
 />
+
+---
+
+# INSERT PHIL'S SLIDES
+
+---
+
+## React Navigation
+
+#### Custom Navigators
+
+---
+
+## Problem
+
+- You've made a sweet transition animation
+- Now all your code is on a single screen
+- Not very React-like, is it?
+- Back button and gestures don't work
+
+---
+
+## Solution
+
+- Custom Transitioner API
+- Define any type of animation
+- Keep your application code clean
+- Tweens with user gestures
+- Publish as open source\*
+
+---
+
+## Open Source Navigators
+
+- FluidTransition
+- ???
+
+---
+
+## FluidTransition
+
+- Shared Element Transitions (SET) 😍
+- Material Design, so hot right now
+- Actually great for spatial awareness
+- The _worst_ type of transition to implement on RN
+
+---
+
+<CodeSurfer
+code={require("!raw-loader!./presentation/snippets/fluidnavigator.js")}
+theme={prismTheme}
+title="FluidNavigator"
+lang="javascript"
+notes=""
+showNumbers
+steps={[
+{ lines: [6, 7], notes: "Drop-in replacement for Stack Navigator" },
+{ range: [11, 13], notes: "Wrap an element in <Transition>" },
+{ range: [18, 20], notes: "And match on the next screen for SET"},
+{ range: [26, 28], notes: "We can also make elements appear with custom animations" },
+]}
+/>
+
+---
